@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yama Gears | Official Merchandise & Performance Bike Gear</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for modern UI icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Announcement Bar for Cross-Border Shipping -->
+    <div class="announcement-bar">
+        <p><i class="fa-solid fa-plane"></i> Direct Cross-Border Shipping: <strong>Japan to Philippines</strong> | Real-Time Order Tracking Available</p>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-main">YAMA</span><span class="logo-sub">GEARS</span>
+                <span class="logo-est">EST. 2020</span>
+            </a>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="dropdown">
+                        <a href="products.html" class="nav-link">Products <i class="fa-solid fa-chevron-down"></i></a>
+                        
+                        <!-- Mega-Dropdown Layout -->
+                        <div class="dropdown-menu mega-menu">
+                            <div class="dropdown-column">
+                                <span class="dropdown-header"><i class="fa-solid fa-shirt"></i> PRIMARY: MERCHANDISE</span>
+                                <ul>
+                                    <li><a href="products.html?category=tshirt">Tshirt</a></li>
+                                    <li><a href="products.html?category=jersey">Jersey MTB</a></li>
+                                    <li><a href="products.html?category=cap">Cap</a></li>
+                                    <li><a href="products.html?category=hoodie">Hoodie</a></li>
+                                    <li><a href="products.html?category=polo">Checkered Polo</a></li>
+                                    <li><a href="products.html?category=windbreaker">Windbreaker</a></li>
+                                    <li><a href="products.html?category=gears">Gears</a></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="dropdown-column secondary-col">
+                                <span class="dropdown-header"><i class="fa-solid fa-bicycle"></i> SECONDARY: HARDWARE</span>
+                                <ul>
+                                    <li><a href="products.html?category=parts">MTB Parts</a></li>
+                                    <li><a href="products.html?category=bikes">Bikes</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="track-order.html" class="nav-link">Track Order</a></li>
+                    <li><a href="contact.html" class="nav-link">Inquiry / Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- Inline Expandable Search Bar -->
+                <div class="nav-search-wrapper" id="nav-search-wrapper">
+                    <input type="text" id="search-input" placeholder="Search products..." onkeyup="handleSearchKey(event)">
+                    <button class="icon-btn" onclick="toggleInlineSearch()" title="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Icon -->
+                <button class="icon-btn" onclick="openCart()" title="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="hero-tag">NEW COLLECTION 2026</span>
+            <h1 class="hero-title">RIDE IN STYLE. DEFINED BY YAMA GEARS.</h1>
+            <p class="hero-subtitle">Official Apparel, Trail Merchandise, & Premium Japan Import Mountain Bikes.</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">EXPLORE MERCHANDISE</a>
+                <a href="products.html?category=bikes" class="btn btn-secondary">VIEW BIKES & PARTS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Category Showcase -->
+    <section class="categories-showcase">
+        <div class="section-header">
+            <h2>FEATURED CATEGORIES</h2>
+            <p>Our official riding apparel and gear lineups</p>
+        </div>
+        <div class="category-grid">
+            <div class="category-card" onclick="filterCategory('jersey')">
+                <div class="cat-img placeholder-jersey"></div>
+                <h3>MTB JERSEYS</h3>
+            </div>
+            <div class="category-card" onclick="filterCategory('hoodie')">
+                <div class="cat-img placeholder-hoodie"></div>
+                <h3>HOODIES & POLOS</h3>
+            </div>
+            <div class="category-card" onclick="filterCategory('cap')">
+                <div class="cat-img placeholder-cap"></div>
+                <h3>CAPS & ACCESSORIES</h3>
+            </div>
+            <div class="category-card" onclick="filterCategory('bikes')">
+                <div class="cat-img placeholder-bike"></div>
+                <h3>JAPAN IMPORT BIKES</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Products Catalog Section -->
+    <section class="products-section" id="products">
+        <div class="section-header">
+            <h2>PRODUCT CATALOG</h2>
+            <div class="filter-tabs">
+                <button class="tab-btn active" onclick="filterCategory('all')">All Products</button>
+                <button class="tab-btn" onclick="filterCategory('merch')">Merchandise (Primary)</button>
+                <button class="tab-btn" onclick="filterCategory('bikes')">Bikes & Parts (Secondary)</button>
+            </div>
+        </div>
+
+        <div class="products-grid" id="products-grid">
+            <!-- Dynamic JavaScript Product Injection -->
+        </div>
+    </section>
+
+    <!-- Order Tracking Banner Section -->
+    <section class="track-banner" id="track-order">
+        <div class="track-content">
+            <h2>HAVING ORDERS IN TRANSIT FROM JAPAN?</h2>
+            <p>Enter your tracking number below to check shipment updates without waiting for social media responses.</p>
+            <div class="track-input-group">
+                <input type="text" id="banner-track-id" placeholder="Enter Order ID (e.g., YG-8821)">
+                <button class="btn btn-primary" onclick="trackFromBanner()">TRACK STATUS</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <span class="logo-main">YAMA</span><span class="logo-sub">GEARS</span>
+                <p>Official Store Operations & Fulfillment System. Shipping Direct from Japan to the Philippines.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="products.html?category=merch">Apparel & Merch</a></li>
+                    <li><a href="products.html?category=bikes">MTB Parts & Bikes</a></li>
+                    <li><a href="track-order.html">Order Tracking</a></li>
+                    <li><a href="contact.html">Inquiry Form</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Payment Options</h4>
+                <p><i class="fa-solid fa-credit-card"></i> Credit / Debit Cards Integration Supported</p>
+                <p><i class="fa-solid fa-store"></i> Actual Store Pick-up Options Available</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yama Gears. System Prototype for Benedicto College Capstone Presentation.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL: Cart & Checkout System -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content modal-wide">
+            <span class="close-btn" onclick="closeModal('cart-modal')">&times;</span>
+            <h2>Your Shopping Cart & Order Checkout</h2>
+            <div class="cart-layout">
+                <div class="cart-items-list" id="cart-items-container">
+                    <!-- Dynamic cart items -->
+                </div>
+                <div class="cart-checkout-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-line"><span>Subtotal:</span> <span id="cart-subtotal">₱0.00</span></div>
+                    <div class="summary-line"><span>Shipping (Japan to PH):</span> <span id="cart-shipping">₱250.00</span></div>
+                    <hr>
+                    <div class="summary-line total-line"><span>Total:</span> <span id="cart-total">₱0.00</span></div>
+
+                    <div class="payment-options">
+                        <h4 class="payment-title">Payment Options</h4>
+                        <div class="payment-methods">
+                            <label class="pay-option">
+                                <input type="radio" name="paymethod" value="card" checked onclick="togglePaymentForm('card')">
+                                <span><i class="fa-solid fa-credit-card"></i> Credit / Debit Card</span>
+                            </label>
+                            <label class="pay-option">
+                                <input type="radio" name="paymethod" value="gcash" onclick="togglePaymentForm('gcash')">
+                                <span><i class="fa-solid fa-mobile-screen-button"></i> GCash</span>
+                            </label>
+                            <label class="pay-option">
+                                <input type="radio" name="paymethod" value="maya" onclick="togglePaymentForm('maya')">
+                                <span><i class="fa-solid fa-wallet"></i> Maya</span>
+                            </label>
+                            <label class="pay-option">
+                                <input type="radio" name="paymethod" value="store" onclick="togglePaymentForm('store')">
+                                <span><i class="fa-solid fa-store"></i> Store Pickup / Cash</span>
+                            </label>
+                        </div>
+
+                        <!-- Grey Form Container -->
+                        <div class="card-form-box">
+                            <!-- 1. Credit / Debit Card Form -->
+                            <div id="card-form" class="payment-form-section">
+                                <div class="form-group">
+                                    <label>Cardholder Name</label>
+                                    <input type="text" placeholder="Name on card">
+                                </div>
+                                <div class="form-group">
+                                    <label>Card Number</label>
+                                    <input type="text" placeholder="XXXX - XXXX - XXXX - XXXX">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Expiry</label>
+                                        <input type="text" placeholder="MM/YY">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CVC</label>
+                                        <input type="text" placeholder="123">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. GCash Form -->
+                            <div id="gcash-form" class="payment-form-section" style="display: none;">
+                                <p style="font-size: 13px; margin-bottom: 8px;">Send payment to <strong>09XX-XXX-XXXX (Yama Gears)</strong></p>
+                                <div class="form-group">
+                                    <label>GCash Reference Number</label>
+                                    <input type="text" placeholder="Enter 13-digit Reference No.">
+                                </div>
+                            </div>
+
+                            <!-- 3. Maya Form -->
+                            <div id="maya-form" class="payment-form-section" style="display: none;">
+                                <p style="font-size: 13px; margin-bottom: 8px;">Send payment to <strong>09XX-XXX-XXXX (Yama Gears)</strong></p>
+                                <div class="form-group">
+                                    <label>Maya Reference Number</label>
+                                    <input type="text" placeholder="Enter Reference No.">
+                                </div>
+                            </div>
+
+                            <!-- 4. Store Pickup Form -->
+                            <div id="store-form" class="payment-form-section" style="display: none;">
+                                <p style="font-size: 13px;">Pay cash upon pickup at our official store location.</p>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-block" onclick="processCheckout()" style="margin-top: 15px;">PLACE ORDER & PAY NOW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
