@@ -389,12 +389,19 @@ function trackFromBanner() {
     }
 }
 
-// Cart System
 function addToCart(id) {
     const item = products.find(p => p.id === id);
-    cart.push(item);
-    saveCart();
-    alert(`${item.name} added to your order cart.`);
+    if (item) {
+        cart.push(item);
+        saveCart();
+
+        // Optional: Pulse the cart badge as a subtle confirmation
+        const badge = document.getElementById("cart-count");
+        if (badge) {
+            badge.classList.add("pulse");
+            setTimeout(() => badge.classList.remove("pulse"), 500);
+        }
+    }
 }
 
 function openCart() {
