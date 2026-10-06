@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yama Gears - System Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin-settings.css">
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">
+            <h2>YAMA <span>GEARS</span></h2>
+            <small>Admin Panel</small>
+        </div>
+        <nav class="nav-menu">
+            <a href="admin.html" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i> Overview
+            </a>
+            <a href="adminproduct.html" class="nav-item">
+                <i class="fa-solid fa-box"></i> Products
+            </a>
+            <a href="adminorder.html" class="nav-item">
+                <i class="fa-solid fa-cart-shopping"></i> Orders
+            </a>
+            <a href="adminsettings.html" class="nav-item active">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Back to Store
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="topbar">
+            <h1>System Settings</h1>
+        </header>
+
+        <div class="content-body">
+            <div class="settings-grid">
+                
+                <!-- Store Profile Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-store"></i> Store Profile</h3>
+                    </div>
+                    <form id="store-profile-form" onsubmit="saveStoreSettings(event)">
+                        <div class="form-group">
+                            <label for="store-name">Store Name</label>
+                            <input type="text" id="store-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="store-email">Contact Email</label>
+                            <input type="email" id="store-email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="store-currency">Currency Symbol</label>
+                            <input type="text" id="store-currency" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+                    </form>
+                </div>
+
+                <!-- Payment Methods Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-wallet"></i> Payment Methods</h3>
+                    </div>
+                    <form id="payment-settings-form" onsubmit="savePaymentSettings(event)">
+                        <div class="toggle-group">
+                            <label for="gcash-toggle">Enable GCash</label>
+                            <input type="checkbox" id="gcash-toggle" class="toggle-switch">
+                        </div>
+                        <div class="toggle-group">
+                            <label for="card-toggle">Enable Credit/Debit Card</label>
+                            <input type="checkbox" id="card-toggle" class="toggle-switch">
+                        </div>
+                        <div class="toggle-group">
+                            <label for="pickup-toggle">Enable Store Pickup</label>
+                            <input type="checkbox" id="pickup-toggle" class="toggle-switch">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Save Payment Settings</button>
+                    </form>
+                </div>
+
+                <!-- Database & Storage Management -->
+                <div class="card full-width">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-database"></i> Local Database Management</h3>
+                    </div>
+                    <div class="data-actions">
+                        <div class="action-desc">
+                            <strong>Export Database Backup</strong>
+                            <p>Download a JSON backup of products and order records.</p>
+                        </div>
+                        <button class="btn btn-secondary" onclick="exportDatabase()"><i class="fa-solid fa-download"></i> Export Data</button>
+                    </div>
+                    <hr class="divider">
+                    <div class="data-actions">
+                        <div class="action-desc">
+                            <strong>Reset Database to Default</strong>
+                            <p>Restore products and orders back to the default sample dataset.</p>
+                        </div>
+                        <button class="btn btn-danger" onclick="resetDatabase()"><i class="fa-solid fa-rotate-left"></i> Reset System</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">Settings updated successfully!</div>
+
+    <script src="admin-settings.js"></script>
+</body>
+</html>

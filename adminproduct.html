@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yama Gears - Product Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin-product.css">
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">
+            <h2>YAMA <span>GEARS</span></h2>
+            <small>Admin Panel</small>
+        </div>
+        <nav class="nav-menu">
+            <a href="admin.html" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i> Overview
+            </a>
+            <a href="adminproduct.html" class="nav-item active">
+                <i class="fa-solid fa-box"></i> Products
+            </a>
+            <a href="adminorder.html" class="nav-item">
+                <i class="fa-solid fa-cart-shopping"></i> Orders
+            </a>
+            <a href="adminsettings.html" class="nav-item">
+                <i class="fa-solid fa-gear"></i> Settings
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Back to Store
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Top Header Bar -->
+        <header class="topbar">
+            <h1>Product Management</h1>
+            <button class="btn btn-primary" onclick="openAddModal()">
+                <i class="fa-solid fa-plus"></i> Add Product
+            </button>
+        </header>
+
+        <div class="content-body">
+            <!-- Filter & Search Control Bar -->
+            <div class="controls-card">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Search by name or specs..." onkeyup="filterProducts()">
+                </div>
+                <div class="filter-box">
+                    <select id="type-filter" onchange="filterProducts()" class="form-control">
+                        <option value="all">All Types</option>
+                        <option value="merch">Primary (Merch)</option>
+                        <option value="bikes">Secondary (Bikes & Parts)</option>
+                    </select>
+                    <select id="category-filter" onchange="filterProducts()" class="form-control">
+                        <option value="all">All Categories</option>
+                        <option value="jersey">Jersey</option>
+                        <option value="hoodie">Hoodie</option>
+                        <option value="cap">Cap</option>
+                        <option value="polo">Polo</option>
+                        <option value="windbreaker">Windbreaker</option>
+                        <option value="tshirt">T-Shirt</option>
+                        <option value="gears">Gears</option>
+                        <option value="parts">Parts</option>
+                        <option value="bikes">Bikes</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Products Data Table -->
+            <div class="data-card">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product Details</th>
+                                <th>Type</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-table-body">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Product Modal (Add / Edit) -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Product</h3>
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+            </div>
+            <form id="product-form" onsubmit="handleFormSubmit(event)">
+                <input type="hidden" id="prod-id">
+                
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="prod-name" class="form-control" required placeholder="e.g. Yama Gears Trail Jersey">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select id="prod-type" class="form-control">
+                            <option value="merch">Primary (Merch)</option>
+                            <option value="bikes">Secondary (Bikes & Parts)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="prod-category" class="form-control">
+                            <option value="jersey">Jersey</option>
+                            <option value="hoodie">Hoodie</option>
+                            <option value="cap">Cap</option>
+                            <option value="polo">Polo</option>
+                            <option value="windbreaker">Windbreaker</option>
+                            <option value="tshirt">T-Shirt</option>
+                            <option value="gears">Gears</option>
+                            <option value="parts">Parts</option>
+                            <option value="bikes">Bikes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price (₱)</label>
+                        <input type="number" id="prod-price" class="form-control" step="0.01" required placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Stock Quantity</label>
+                        <input type="number" id="prod-stock" class="form-control" required min="0" value="10">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Specifications / Description</label>
+                    <input type="text" id="prod-specs" class="form-control" required placeholder="e.g. Breathable Mesh, Quick-Dry">
+                </div>
+
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="prod-image" class="form-control" required placeholder="https://example.com/image.jpg">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="adminproduct.js"></script>
+</body>
+</html>
