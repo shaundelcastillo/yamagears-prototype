@@ -577,7 +577,6 @@ function ygAddCheckoutForm() {
     customerStep.id = "yg-customer-step";
     customerStep.innerHTML = `
         <div class="yg-checkout-header">
-            
             <p>Enter your contact and delivery details to continue.</p>
         </div>
 
