@@ -262,6 +262,137 @@
         </div>
     </div>
 
+
+<!-- ADD-ON: YAMA GEARS CHECKOUT FLOW by:hugo-->
+<div id="yg-additional-checkout" class="yg-addon-overlay" hidden>
+  <div class="yg-addon-modal">
+    <button type="button" id="yg-addon-close" class="yg-addon-close"
+      aria-label="Close checkout">&times;</button>
+
+    <h2>Checkout</h2>
+
+    <!--  CUSTOMER INFORMATION -->
+    <section id="yg-addon-form-step">
+      <h3>Contact Information</h3>
+
+      <form id="yg-addon-form">
+        <label for="yg-addon-email">Email Address</label>
+        <input id="yg-addon-email" type="email" required>
+
+        <h3>Delivery Address</h3>
+
+        <div class="yg-addon-grid">
+          <div>
+            <label for="yg-addon-first">First Name</label>
+            <input id="yg-addon-first" required>
+          </div>
+          <div>
+            <label for="yg-addon-last">Last Name</label>
+            <input id="yg-addon-last" required>
+          </div>
+        </div>
+
+        <label for="yg-addon-address">Street Address / Barangay</label>
+        <input id="yg-addon-address" required>
+
+        <div class="yg-addon-grid">
+          <div>
+            <label for="yg-addon-city">City / Municipality</label>
+            <input id="yg-addon-city" required>
+          </div>
+          <div>
+            <label for="yg-addon-region">Province / Region</label>
+            <input id="yg-addon-region" required>
+          </div>
+        </div>
+
+        <div class="yg-addon-grid">
+          <div>
+            <label for="yg-addon-postal">Postal Code</label>
+            <input id="yg-addon-postal" required>
+          </div>
+          <div>
+            <label for="yg-addon-phone">Phone Number</label>
+            <input id="yg-addon-phone" type="tel" required>
+          </div>
+        </div>
+
+        <h3>Delivery Method</h3>
+        <label class="yg-addon-choice">
+          <input type="radio" name="yg-addon-delivery"
+            value="shipping" checked>
+          Ship to my address
+        </label>
+        <label class="yg-addon-choice">
+          <input type="radio" name="yg-addon-delivery"
+            value="pickup">
+          Store pickup
+        </label>
+
+        <button type="submit" class="yg-addon-primary">
+          Continue to Order Summary
+        </button>
+      </form>
+    </section>
+
+    <!--  ORDER SUMMARY -->
+    <section id="yg-addon-summary-step" hidden>
+      <h3>Order Summary</h3>
+
+      <div id="yg-addon-products"></div>
+
+      <div class="yg-addon-total">
+        <span>Subtotal:</span>
+        <strong id="yg-addon-subtotal">₱0.00</strong>
+      </div>
+      <div class="yg-addon-total">
+        <span id="yg-addon-shipping-label">Shipping (Japan to PH):</span>
+        <strong id="yg-addon-shipping">₱0.00</strong>
+      </div>
+      <div class="yg-addon-total yg-addon-grand-total">
+        <span>Total:</span>
+        <strong id="yg-addon-total">₱0.00</strong>
+      </div>
+
+      <h3>Payment Options</h3>
+      <div class="yg-addon-payments">
+        <label><input type="radio" name="yg-addon-payment"
+          value="card" checked> 💳 Credit / Debit Card</label>
+        <label><input type="radio" name="yg-addon-payment"
+          value="gcash"> 📱 GCash</label>
+        <label><input type="radio" name="yg-addon-payment"
+          value="maya"> 💳 Maya</label>
+        <label><input type="radio" name="yg-addon-payment"
+          value="cash"> 🏪 Store Pickup / Cash</label>
+      </div>
+
+      <div id="yg-addon-card-fields">
+        <p>For card payments, complete payment through a secure payment provider.</p>
+      </div>
+
+      <div id="yg-addon-customer-review" class="yg-addon-review"></div>
+      <p id="yg-addon-message" role="status"></p>
+
+      <div class="yg-addon-actions">
+        <button type="button" id="yg-addon-back"
+          class="yg-addon-secondary">Back</button>
+        <button type="button" id="yg-addon-place-order"
+          class="yg-addon-primary">Place Order</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: CONFIRMATION -->
+    <section id="yg-addon-success" hidden>
+      <h3>Order Submitted</h3>
+      <p id="yg-addon-success-text">
+        Your demo order has been recorded in this session.
+      </p>
+      <button type="button" id="yg-addon-finish"
+        class="yg-addon-primary">Continue Shopping</button>
+    </section>
+  </div>
+</div>
+
     <script src="script.js"></script>
 </body>
 </html>

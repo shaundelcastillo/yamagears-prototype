@@ -551,3 +551,393 @@ function handleSearchKey(event) {
         executeSearch();
     }
 }
+
+/* ==========================================
+   YAMA GEARS - ADD-ON TWO-STEP CHECKOUT
+   added by; hugo
+   ========================================== */
+
+let ygCustomerDetails = {};
+
+// Keep a reference to the existing checkout functions
+const ygOriginalOpenCart = openCart;
+const ygOriginalProcessCheckout = processCheckout;
+
+// Step 1: Add the customer form without replacing the existing cart modal
+function ygAddCheckoutForm() {
+    const modal = document.getElementById("cart-modal");
+    if (!modal || document.getElementById("yg-customer-step")) return;
+
+    const modalContent = modal.querySelector(".modal-content");
+    const cartLayout = modal.querySelector(".cart-layout");
+
+    if (!modalContent || !cartLayout) return;
+
+    const customerStep = document.createElement("section");
+    customerStep.id = "yg-customer-step";
+    customerStep.innerHTML = `
+        <div class="yg-checkout-header">
+            
+            <p>Enter your contact and delivery details to continue.</p>
+        </div>
+
+        <form id="yg-customer-form">
+            <h3>Contact Information</h3>
+
+            <div class="yg-form-grid">
+                <div class="yg-field yg-full">
+                    <label for="yg-email">Email Address *</label>
+                    <input id="yg-email" name="email" type="email"
+                           autocomplete="email" required>
+                </div>
+
+                <div class="yg-field">
+                    <label for="yg-first-name">First Name *</label>
+                    <input id="yg-first-name" name="firstName"
+                           autocomplete="given-name" required>
+                </div>
+
+                <div class="yg-field">
+                    <label for="yg-last-name">Last Name *</label>
+                    <input id="yg-last-name" name="lastName"
+                           autocomplete="family-name" required>
+                </div>
+
+                <div class="yg-field yg-full">
+                    <label for="yg-phone">Phone Number *</label>
+                    <input id="yg-phone" name="phone" type="tel"
+                           autocomplete="tel" required>
+                </div>
+            </div>
+
+            <h3>Delivery Address</h3>
+
+            <div class="yg-form-grid">
+                <div class="yg-field yg-full">
+                    <label for="yg-address">Street Address *</label>
+                    <input id="yg-address" name="address"
+                           autocomplete="street-address" required>
+                </div>
+
+                <div class="yg-field">
+                    <label for="yg-city">City / Municipality *</label>
+                    <input id="yg-city" name="city"
+                           autocomplete="address-level2" required>
+                </div>
+
+                <div class="yg-field">
+                    <label for="yg-region">Province / Region *</label>
+                    <input id="yg-region" name="region"
+                           autocomplete="address-level1" required>
+                </div>
+
+                <div class="yg-field yg-full">
+                    <label for="yg-postal">Postal Code *</label>
+                    <input id="yg-postal" name="postal"
+                           autocomplete="postal-code" required>
+                </div>
+            </div>
+
+            <div class="yg-checkout-actions">
+                <button type="button" class="btn btn-secondary"
+                        id="yg-back-to-cart">
+                    Back to Cart
+                </button>
+
+                <button type="submit" class="btn btn-primary">
+                    Continue to Order Summary
+                </button>
+            </div>
+        </form>
+    `;
+
+    // Insert the customer form before the existing cart and payment area.
+    modalContent.insertBefore(customerStep, cartLayout);
+
+    document.getElementById("yg-customer-form").addEventListener(
+        "submit",
+        function(event) {
+            event.preventDefault();
+
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add a product first.");
+                return;
+            }
+
+            const formData = new FormData(this);
+            ygCustomerDetails = Object.fromEntries(formData.entries());
+
+            // Show the existing order summary and payment options.
+            customerStep.style.display = "none";
+            cartLayout.style.display = "grid";
+
+            const summaryHeading = modalContent.querySelector(":scope > h2");
+            if (summaryHeading) {
+                summaryHeading.textContent = "Review Your Order";
+            }
+
+            // Show the customer details above the existing order summary.
+            let detailsBox = document.getElementById("yg-saved-customer-details");
+
+            if (!detailsBox) {
+                detailsBox = document.createElement("div");
+                detailsBox.id = "yg-saved-customer-details";
+                cartLayout.parentNode.insertBefore(detailsBox, cartLayout);
+            }
+
+            detailsBox.innerHTML = `
+                <h3>Delivery Details</h3>
+                <p><strong>Name:</strong> ${ygEscape(
+                    ygCustomerDetails.firstName + " " +
+                    ygCustomerDetails.lastName
+                )}</p>
+                <p><strong>Email:</strong> ${ygEscape(ygCustomerDetails.email)}</p>
+                <p><strong>Phone:</strong> ${ygEscape(ygCustomerDetails.phone)}</p>
+                <p><strong>Address:</strong> ${ygEscape(
+                    ygCustomerDetails.address + ", " +
+                    ygCustomerDetails.city + ", " +
+                    ygCustomerDetails.region + " " +
+                    ygCustomerDetails.postal
+                )}</p>
+
+                <button type="button" class="btn btn-secondary"
+                        id="yg-edit-customer">
+                    Edit Details
+                </button>
+            `;
+
+            document.getElementById("yg-edit-customer").onclick = function() {
+                customerStep.style.display = "block";
+                cartLayout.style.display = "none";
+                detailsBox.style.display = "none";
+
+                if (summaryHeading) {
+                    summaryHeading.textContent =
+                        "Your Shopping Cart & Order Checkout";
+                }
+            };
+
+            // Refresh the existing cart display and totals.
+            ygRenderExistingCart();
+        }
+    );
+
+    document.getElementById("yg-back-to-cart").addEventListener("click", () => {
+        customerStep.style.display = "none";
+        cartLayout.style.display = "grid";
+
+        const summaryHeading = modalContent.querySelector(":scope > h2");
+        if (summaryHeading) {
+            summaryHeading.textContent = "Your Shopping Cart & Order Checkout";
+        }
+    });
+}
+
+// Escape user-entered text before displaying it as HTML.
+function ygEscape(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[character]);
+}
+
+// Refresh the existing cart items and total calculations.
+function ygRenderExistingCart() {
+    const container = document.getElementById("cart-items-container");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (cart.length === 0) {
+        container.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+        cart.forEach(item => {
+            const row = document.createElement("div");
+            row.className = "summary-line";
+            row.innerHTML = `
+                <span>${ygEscape(item.name)}</span>
+                <span>₱${Number(item.price).toLocaleString("en-PH", {
+                    minimumFractionDigits: 2
+                })}</span>
+            `;
+            container.appendChild(row);
+        });
+    }
+
+    const selected = document.querySelector(
+        'input[name="paymethod"]:checked'
+    );
+
+    togglePaymentForm(selected ? selected.value : "card");
+}
+
+// Add the customer form to the same modal when the cart is opened.
+openCart = function() {
+    ygAddCheckoutForm();
+
+    const modal = document.getElementById("cart-modal");
+    const customerStep = document.getElementById("yg-customer-step");
+    const cartLayout = modal?.querySelector(".cart-layout");
+    const detailsBox = document.getElementById("yg-saved-customer-details");
+    const heading = modal?.querySelector(".modal-content > h2");
+
+    if (cart.length === 0) {
+        ygOriginalOpenCart();
+        return;
+    }
+
+    if (customerStep) customerStep.style.display = "block";
+    if (cartLayout) cartLayout.style.display = "none";
+    if (detailsBox) detailsBox.style.display = "none";
+
+    if (heading) heading.textContent = "Customer Information";
+
+    ygOriginalOpenCart();
+    openModal("cart-modal");
+
+    // The original function opens the modal; show the form as step one.
+    if (customerStep) customerStep.style.display = "block";
+    if (cartLayout) cartLayout.style.display = "none";
+};
+
+// Preserve the existing payment-method selection and checkout simulation.
+processCheckout = function() {
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    if (!ygCustomerDetails.email || !ygCustomerDetails.address) {
+        alert("Please complete your contact and delivery information first.");
+        const customerStep = document.getElementById("yg-customer-step");
+        const cartLayout = document.querySelector("#cart-modal .cart-layout");
+
+        if (customerStep) customerStep.style.display = "block";
+        if (cartLayout) cartLayout.style.display = "none";
+        return;
+    }
+
+    const method = document.querySelector(
+        'input[name="paymethod"]:checked'
+    )?.value || "card";
+
+    const methodNames = {
+        card: "Credit/Debit Card",
+        gcash: "GCash",
+        maya: "Maya",
+        store: "Store Pickup / Cash"
+    };
+
+    // This is a prototype confirmation, not a real payment transaction.
+    const trackingId = "YG-" + Math.floor(1000 + Math.random() * 9000);
+
+    alert(
+        "Order request recorded in this demo.\\n" +
+        "Tracking ID: " + trackingId + "\\n" +
+        "Payment method: " + methodNames[method] + "\\n\\n" +
+        "No actual payment was processed."
+    );
+
+    cart = [];
+    saveCart();
+    ygCustomerDetails = {};
+
+    closeModal("cart-modal");
+
+    const customerStep = document.getElementById("yg-customer-step");
+    const cartLayout = document.querySelector("#cart-modal .cart-layout");
+    const detailsBox = document.getElementById("yg-saved-customer-details");
+    const form = document.getElementById("yg-customer-form");
+
+    if (customerStep) customerStep.style.display = "block";
+    if (cartLayout) cartLayout.style.display = "grid";
+    if (detailsBox) detailsBox.style.display = "none";
+    if (form) form.reset();
+};
+
+// Add checkout styling without editing or replacing style.css rules.
+(function ygAddCheckoutStyles() {
+    if (document.getElementById("yg-checkout-added-styles")) return;
+
+    const style = document.createElement("style");
+    style.id = "yg-checkout-added-styles";
+    style.textContent = `
+        #yg-customer-step {
+            padding: 20px 0;
+        }
+
+        #yg-customer-step h3,
+        #yg-saved-customer-details h3 {
+            margin: 22px 0 12px;
+        }
+
+        .yg-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .yg-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 0;
+        }
+
+        .yg-full {
+            grid-column: 1 / -1;
+        }
+
+        .yg-field input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font: inherit;
+        }
+
+        .yg-checkout-actions {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        #yg-saved-customer-details {
+            padding: 16px;
+            margin: 16px 0;
+            background: #f5f5f5;
+            border-radius: 8px;
+            overflow-wrap: anywhere;
+        }
+
+        #yg-saved-customer-details p {
+            margin: 8px 0;
+        }
+
+        @media (max-width: 600px) {
+            .yg-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .yg-full {
+                grid-column: auto;
+            }
+
+            .yg-checkout-actions {
+                flex-direction: column;
+            }
+
+            .yg-checkout-actions button {
+                width: 100%;
+            }
+        }
+    `;
+
+    document.head.appendChild(style);
+})();
