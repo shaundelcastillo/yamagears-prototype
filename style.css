@@ -212,7 +212,7 @@ body {
 /* Hero Section */
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
-                url('https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/829196305_4594364157483864_7146575078562984669_n.jpg?stp=dst-jpg_tt6&cstp=mx1366x2048&ctp=s1366x2048&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=R_TjDApWXWIQ7kNvwGJpVCJ&_nc_oc=Adp9RTKzKh9AIGKs7z8x6LUEUDOgBp0vlhByCJva7qZwJK33VN3bLYWmRwHJaX3BLms&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=wWXQiwVmgX62KKewu7-HOw&_nc_ss=7b2a8&oh=00_AQPcPwNNI-0yAgHBbLheYypIPtTSnI3JUfUsQ57h5JQHTQ&oe=6AC83D32') center 38% / cover no-repeat;
+                url('https://scontent.fmnl30-3.fna.fbcdn.net/v/t39.30808-6/829196305_4594364157483864_7146575078562984669_n.jpg?stp=dst-jpg_tt6&cstp=mx1366x2048&ctp=s1366x2048&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=icKGh8FJs0wQ7kNvwEdwVCc&_nc_oc=AdoCuNEhBn2eIcycY7uZkiPsiIMsuPAtseJu-hmMM-qmY-7RYJrJmGqRXGp7ZEVuXb8&_nc_zt=23&_nc_ht=scontent.fmnl30-3.fna&_nc_gid=S4xe7C8Dj7zUMPrjN5eVsw&_nc_ss=7b2a8&oh=00_AQPoLtm4iueALJ4kG1vqMLga9x2WxJ6m8L_nkMpgw6Qa-w&oe=6ACED4B2') center 38% / cover no-repeat;
     min-height: 85vh;
     padding: 60px 20px;
     display: flex;
@@ -362,7 +362,7 @@ body {
 }
 
 .placeholder-jersey {
-    background-image: url('https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/829196416_4595113317408948_5019474691743977221_n.jpg?stp=dst-jpg_tt6&cstp=mx1169x1461&ctp=s1169x1461&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=wRGvRglE6uoQ7kNvwHJJx_g&_nc_oc=AdqDW_lTmrq7wAfuJqyvsyXCoOdktuCxSQoAGwau00n9cg4h0HosEUQ7LDgVq6q5Y74&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=0Ww6A38lFwbaX12xyqCLZw&_nc_ss=7b2a8&oh=00_AQMJdKmpvg3lI6mpAgx_J8t3W1a4N8-Dtcw0cP6vZgcU5A&oe=6AC82F2C');
+    background-image: url('https://scontent.fmnl30-3.fna.fbcdn.net/v/t39.30808-6/829196416_4595113317408948_5019474691743977221_n.jpg?stp=dst-jpg_tt6&cstp=mx1169x1461&ctp=s1169x1461&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=V_Hia2MKaroQ7kNvwHxCwjt&_nc_oc=Adp8iOxWm1iZr9P0biuwh3CQWgdwZZ3kh1hdGHvfiLD2yPuthryPbTqDc0fPlmqM0yY&_nc_zt=23&_nc_ht=scontent.fmnl30-3.fna&_nc_gid=Qth3J2Ei-DQLfQH4r5PJHQ&_nc_ss=7b2a8&oh=00_AQPEUBe70HGc0O4d_CkSCGO7TBRSFZBindi-3ciYThcX9g&oe=6ACEFEEC');
 }
 
 .placeholder-hoodie {
@@ -370,11 +370,11 @@ body {
 }
 
 .placeholder-cap {
-    background-image: url('https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/505928789_24785112871077860_8686120211813223521_n.jpg?stp=cp6_dst-jpg_tt6&cstp=mx1536x2048&ctp=s1536x2048&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=i9JTAh-e640Q7kNvwHSrZjZ&_nc_oc=Adq4Z9GFpM_Ne_EIR5_ZUbKjc8RutE1aeEnT4Qukha3sgMXsVcLOkRQPudPWFvnd9oU&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=3SVlzK91A3B95L1cXcuYTQ&_nc_ss=7b2a8&oh=00_AQNMY7ApzRroAI-xZmsLl5fU5K-18ZL4HVdVs-K2793eEA&oe=6AC832D1');
+    background-image: url('https://scontent.fmnl30-3.fna.fbcdn.net/v/t39.30808-6/505928789_24785112871077860_8686120211813223521_n.jpg?stp=cp6_dst-jpg_tt6&cstp=mx1536x2048&ctp=s1536x2048&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=laWo8HCVQgMQ7kNvwGuiRrh&_nc_oc=AdrCVwgTsIaTIhZNqfn13WeSH7FutzvKxHaJAiXRAKtTqtjkexGZCGJApkRC7zo2RGs&_nc_zt=23&_nc_ht=scontent.fmnl30-3.fna&_nc_gid=7rKSsFAFM4pRfJkpgCTGZA&_nc_ss=7b2a8&oh=00_AQNdSP5TM1-e9MO7WTqwcv1e3fCmLO7O-Eyz3-jp2f_UvQ&oe=6ACF0291');
 }
 
 .placeholder-bike {
-    background-image: url('https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.99422-6/833070993_958333400059490_254752121852407066_n.png?stp=dst-jpg_tt6&cstp=mx2048x1536&ctp=s2048x1536&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=X3gwRIZwDLoQ7kNvwFVIhe4&_nc_oc=AdroknLx1V7N_znN31W6OaGUpoPGNfestRmddlcGYgDxKaLudexDTVa5Jhbs3vdsjbQ&_nc_zt=14&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=YFANT7eNqrxpNGB8n-qxSQ&_nc_ss=7b2a8&oh=00_AQM7-ffcI2r5IpgiTFAebqSXSZRtvytCB7KjcD465qxivw&oe=6AC8328E');
+    background-image: url('https://scontent.fmnl30-3.fna.fbcdn.net/v/t39.99422-6/833070993_958333400059490_254752121852407066_n.png?stp=dst-jpg_tt6&cstp=mx2048x1536&ctp=s2048x1536&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Ck4JdFAPa1YQ7kNvwHEpcuJ&_nc_oc=AdqBtDemZLPWgFx6AcRJHvtRnwLD_R6t241zDIMbAEknmotMf5vuHMwVtgIlEkRubs8&_nc_zt=14&_nc_ht=scontent.fmnl30-3.fna&_nc_gid=jOtYMUxBDDKS_xBj1neA4A&_nc_ss=7b2a8&oh=00_AQMV5N0V4N3qsYETqcrWZDSknG7wzLoUSqMx7GgfwRMIYg&oe=6ACF024E');
 }
 
 /* Filter Tabs */
