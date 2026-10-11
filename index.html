@@ -274,7 +274,22 @@
         </a>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Custom Notification Toast -->
+<div id="toast-notification" class="toast-notification">
+    <i class="fa-solid fa-circle-check toast-icon"></i>
+    <div class="toast-message">
+        <h4 id="toast-title">Order Placed Successfully!</h4>
+        <p id="toast-desc">Your tracking ID is YG-1234.</p>
+    </div>
+</div>
+
+<!-- Product Details Modal -->
+<div class="modal" id="quick-view-modal" style="display: none;">
+    <div class="modal-content" style="max-width: 900px; width: 90%; background: #fff; padding: 30px; border-radius: 8px; position: relative;">
+        <span class="close-btn" onclick="closeModal('quick-view-modal')" style="position: absolute; top: 15px; right: 20px; font-size: 26px; cursor: pointer;">&times;</span>
+        <div id="quick-view-body" style="margin-top: 15px;"></div>
+    </div>
+</div>
 
     <script src="script.js"></script>
 </body>

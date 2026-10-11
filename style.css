@@ -747,3 +747,44 @@ body {
 .social-btn:hover {
   transform: scale(1.1);
 }
+
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #fff;
+    color: #111;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 99999;
+    transform: translateY(120px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-left: 5px solid #28a745;
+}
+
+.toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-icon {
+    font-size: 24px;
+    color: #28a745;
+}
+
+.toast-message h4 {
+    margin: 0 0 4px 0;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.toast-message p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+}
