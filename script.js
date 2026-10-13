@@ -7,7 +7,7 @@ const products = [
         type: "merch", 
         price: 1250, 
         specs: "Breathable Mesh, Quick-Dry, Japan Fabric", 
-        image: "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/474109818_10040388159310241_2137057276779076982_n.jpg?stp=dst-jpg_tt6&cstp=mx1200x1500&ctp=s1200x1500&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=FYI-LaajniMQ7kNvwEEL4wN&_nc_oc=AdprCdZ72iu18JJYG-EzTL31eEm6A7jDRIHq3NGAPfKj3Kr-uganHcTZi1eUN_MfIBM&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=e8akw7bfqWPHoChgnDtEFw&_nc_ss=7b2a8&oh=00_AQP0ksXoICghtRzfyEx8TDU_Ta0116yIdgt3TjBQu5uCeQ&oe=6AC82C00" 
+        image: "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/474109818_10040388159310241_2137057276779076982_n.jpg?stp=dst-jpg_tt6&cstp=mx1200x1500&ctp=s1200x1500&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEaZDMuuSeCYAKC5-kIFCHXfaC38S57zZp9oLfxLnvNmuNnTiYqVojiGKkqjCmnL1ey9U4F-bgU4tIIRAZsC_2G&_nc_ohc=B0zcuibGrdwQ7kNvwFNQZ1c&_nc_oc=AdpjJqyAMvDWmOZn2Pof7GJ6jA_xJJ2jOZSCOY07jLHYppXLyqqbsluBADgcIDYoOKA&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=26d5GhEH8kee1t1am1KRsQ&_nc_ss=7b2a8&oh=00_AQN_blks7OyykpzSslLg5FzGqOM4So21etL2u-9FuToaEQ&oe=6AD40980" 
     },
     { 
         id: 2, 
@@ -25,7 +25,7 @@ const products = [
         type: "merch", 
         price: 1850, 
         specs: "100% Cotton, Embroidered Mountain Logo", 
-        image: "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/830413333_4595226974064249_1518941561815945148_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x445&ctp=s1024x445&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=dqiqOLGWEzYQ7kNvwE_TAvN&_nc_oc=AdqvdQ24F7FY5YVxb-eUwA3oh9n-KbaB_LYGRiLKweT4Np4hWR2q9sjDuSV13lDCRms&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=CgilqbQYuAId0WhiRQ0BuQ&_nc_ss=7b2a8&oh=00_AQPNrU1-FrHRHNTluKTtTKVjVF10zO912IlR_dwxiFKW1Q&oe=6AC827C5" 
+        image: "https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/829196475_4595230730730540_2368457628400369438_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x445&ctp=s1024x445&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG6MWBVZJu1rxHVm7Jma3MPt81l6gnul5-3zWXqCe6Xn5M8rEj-MU16dTvaz3mWyTeqxzcoiq6Hbt1WIgcPPsj_&_nc_ohc=Vr8965PM9oQQ7kNvwF_whPS&_nc_oc=AdqH5av6SKeQE7azp8rZJR9vujHdL0yEtbyM_cgrpsD5SNpn0UK5zprzMVe5EP5mfmc&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=gIZ0Rv3TP84exLUgMCgYoQ&_nc_ss=7b2a8&oh=00_AQPNSVFBnu11_holQHXp6VIQQCtIqeArOuuSuSS8EYNsXA&oe=6AD3EFD5" 
     },
     { 
         id: 4, 
@@ -114,7 +114,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
-        image: "https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/509427727_24854078427514637_7727181357129933045_n.jpg?stp=dst-jpg_tt6&cstp=mx506x755&ctp=s506x755&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=KTSSNyzm4YcQ7kNvwFiYIgJ&_nc_oc=AdrwlY9T-pwP9nC2BvdSdCuLFOPxrgU6Eqa2N0Te3sfGAE5FRgfCDzxNUx2YWfeoWBI&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=Vuy93rGATbxtWnNry7ZVNw&_nc_ss=7b2a8&oh=00_AQPCZb0eVOJ0A7GL2zRde1FFXwNizCd01ohpKtB5Z_v79Q&oe=6AC811AC" 
+        image: "https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/509427727_24854078427514637_7727181357129933045_n.jpg?stp=dst-jpg_tt6&cstp=mx506x755&ctp=s506x755&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEuHkLBlmswX8ygITAKJxowN8fILYbj42E3x8gthuPjYQjCYmxtAnr8tm2P1pb5AxujMxp6tyLKG9H1bhe6h7Hy&_nc_ohc=jzHXdeJ78Z8Q7kNvwEVuf73&_nc_oc=Adr-PD7z-jftGEgabXv5YuO1m0JSzApDrtor3BcfN0-T092pz_wqz4LCwiIqtmBO6Mo&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=2ZC2x1jbtScb8Ykzlt5UtA&_nc_ss=7b2a8&oh=00_AQOe88PlhSn9BAb23ncpJtAj70bBoZ90ahh7_bRXZYKrCQ&oe=6AD3EF2C" 
     },{ 
         id: 14, 
         name: "Yama Classic Logo Tshirt", 
@@ -146,7 +146,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
-        image: "https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/508674447_24854078070848006_7075197354736139205_n.jpg?stp=dst-jpg_tt6&cstp=mx506x759&ctp=s506x759&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=hnmio1R9OloQ7kNvwFxEMfO&_nc_oc=Adr46hea_44OuY6opAtuojlhNR3UHhGMjyRRHZgFYqVyiK0FkymAA6hH5vOak-B23cE&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=jGB50Qxuq_ZZTZwl7U6oZQ&_nc_ss=7b2a8&oh=00_AQO6HG2YVH83ZM5Jbwdew7mjsmuM1sk4SvHrxV5stbYndg&oe=6AC82C41" 
+        image: "https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/510169964_24854078084181338_5144954769614833930_n.jpg?stp=dst-jpg_tt6&cstp=mx505x762&ctp=s505x762&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFInZylCzSBFkdVPPxCGec8d6bOnMp5Bd93ps6cynkF3wfLY_FbgJ4bG9yQlqX6rZMQoQ7sH2GHdtmGfnAk6zj0&_nc_ohc=qmq3Mt5YtwAQ7kNvwGdMeA2&_nc_oc=Ado-YCAQoK21ICz38ZZZx1t6lwM9cfD82sjsh2DLB9foFO-G6RPwf8bWg9oJN213G70&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=92MLKLbAQwmfR9Jv9IBnNw&_nc_ss=7b2a8&oh=00_AQOMbBZ8kQW0QBjVYgWniTJeErGQrQ5sT8f6CB8SmFF7tw&oe=6AD3EC58" 
     },{ 
         id: 18, 
         name: "Yama Classic Logo Tshirt", 
@@ -162,7 +162,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
-        image: "https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/510169964_24854078084181338_5144954769614833930_n.jpg?stp=dst-jpg_tt6&cstp=mx505x762&ctp=s505x762&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=RsduVtd6lMYQ7kNvwGMEFCW&_nc_oc=AdrqafEiqrUq7f7QAHma7hMpOq8OThQsLBHuStxfhPJkVdlWIdG-k1kkSwRv8GjBreA&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=kGgLI371DVB6NLSgzMg8Qw&_nc_ss=7b2a8&oh=00_AQP3Wr1FOTUQGQ1nSsytoomR04BYKj_QTJF3XReB8NmmPw&oe=6AC80ED8" 
+        image: "https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/508610897_24854078094181337_3319065751272561834_n.jpg?stp=dst-jpg_tt6&cstp=mx1284x1004&ctp=s1284x1004&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEWMrir4LCqg12JkPidTddZUVtAu7W7YGxRW0C7tbtgbF3nqwlw8ZG1F01EWfcaHj6FwEW9E0CDIycftBHg8s5h&_nc_ohc=aDrSzosLF4UQ7kNvwFnVpss&_nc_oc=AdoqUEiewaaOMz7emePD5MMyAyylLNBzO_nuUrHrX_km_KE8K-3QS0_9cxS7P2avOtk&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=5iwz4bgCz4QJtzBYH26KSg&_nc_ss=7b2a8&oh=00_AQNZxHxtD0DJzLa5voRkz_6hCzq139d8uv1iTHc533iZ6g&oe=6AD3F4AB" 
     },
     { 
         id: 20, 
@@ -171,7 +171,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
-        image: "https://scontent.fmnl17-7.fna.fbcdn.net/v/t39.30808-6/508934861_24854078050848008_4407161644729323143_n.jpg?stp=dst-jpg_tt6&cstp=mx433x652&ctp=s433x652&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=puyKprrYmD4Q7kNvwGUga9H&_nc_oc=AdoUAK_zg48n1BqAGZNTRjJ6QEh55DIJHWZIvau9eyfNZWIkuApw6lMiTZ-9Q-1se6I&_nc_zt=23&_nc_ht=scontent.fmnl17-7.fna&_nc_gid=LkE0pT7gcjNfvH5Itk41_Q&_nc_ss=7b2a8&oh=00_AQOkv6O-NsevtE_WPvYvd6Us2_Uql-J0uzzBWot_l2p7Pg&oe=6AC824E3" 
+        image: "https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/508674447_24854078070848006_7075197354736139205_n.jpg?stp=dst-jpg_tt6&cstp=mx506x759&ctp=s506x759&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE7qT4Goqhnrs6d_Cp1o8LFBzo82G9qXCgHOjzYb2pcKECn-bJb7caOEOpv4V9v4KQnCl46vAXT9_Do_k7vkaVs&_nc_ohc=Wla8yjbMNmMQ7kNvwEZznOn&_nc_oc=AdqroTeTSjSWX489RJClc4PGOJMX71yrC_1cOdf_LOPMhHLINjPBtHvR82K6Z0H0xA4&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=-anqpSr-5BeALdkKWetfug&_nc_ss=7b2a8&oh=00_AQMW06flkDLMj0QS9bocjvW2387RiRi_NopJ5Xf_pj1-tg&oe=6AD409C1" 
     },
     { 
         id: 21, 
@@ -378,48 +378,55 @@ function openQuickView(productId) {
     if (!modalBody) return;
 
     modalBody.innerHTML = `
-        <div style="display: grid; grid-template-columns: 90px 1fr 1fr; gap: 25px; align-items: start;">
+        <div class="qv-grid">
             <!-- Left: 3 Vertical Thumbnails -->
-            <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="qv-thumb-column">
                 ${images.map((img, idx) => `
-                    <img src="${img}" class="qv-thumb ${idx === 0 ? 'active' : ''}" style="width: 80px; height: 80px; object-fit: cover; cursor: pointer; border-radius: 6px; border: 2px solid ${idx === 0 ? '#000' : '#ddd'};" onclick="switchQvImage('${img}', this)">
+                    <img src="${img}" class="qv-thumb ${idx === 0 ? 'active' : ''}" onclick="switchQvImage('${img}', this)">
                 `).join('')}
             </div>
 
             <!-- Middle: Main Active Image Preview -->
-            <div>
-                <img src="${images[0]}" id="qv-active-img" alt="${product.name}" style="width: 100%; height: 380px; object-fit: cover; border-radius: 8px; border: 1px solid #e1e1e1;">
+            <div class="qv-main-img-container">
+                <img src="${images[0]}" id="qv-active-img" alt="${product.name}">
             </div>
 
-            <!-- Right: Details, Quantity, Add to Cart & Specs -->
-            <div style="display: flex; flex-direction: column; gap: 12px;">
-                <h2 style="font-size: 22px; font-weight: 800; margin: 0; color: #111; text-transform: uppercase;">${product.name}</h2>
-                <div style="font-size: 13px; color: #f39c12;">⭐⭐⭐⭐⭐ <span style="color: #888;">0 Reviews</span></div>
+            <!-- Right: Details, Quantity, Add to Cart, Specs & Warranty Badge -->
+            <div class="qv-details-column">
+                <h2 class="qv-title">${product.name}</h2>
+                <div class="qv-rating">⭐⭐⭐⭐⭐ <span>0 Reviews</span></div>
                 
-                <div style="display: flex; align-items: center; gap: 12px; margin-top: 4px;">
-                    <span style="font-size: 12px; font-weight: 700; text-transform: uppercase;">Quantity</span>
-                    <div style="display: flex; align-items: center; border: 1px solid #ccc; border-radius: 4px;">
-                        <button type="button" onclick="adjustQvQty(-1)" style="background: none; border: none; padding: 6px 12px; cursor: pointer; font-weight: bold;">-</button>
-                        <input type="text" id="qv-qty-input" value="1" style="width: 35px; text-align: center; border: none; font-weight: bold;" readonly>
-                        <button type="button" onclick="adjustQvQty(1)" style="background: none; border: none; padding: 6px 12px; cursor: pointer; font-weight: bold;">+</button>
+                <div class="qv-qty-wrapper">
+                    <span class="qv-qty-label">Quantity</span>
+                    <div class="qv-qty-controls">
+                        <button type="button" onclick="adjustQvQty(-1)">-</button>
+                        <input type="text" id="qv-qty-input" value="1" readonly>
+                        <button type="button" onclick="adjustQvQty(1)">+</button>
                     </div>
                 </div>
 
-                <div style="font-size: 20px; font-weight: bold; color: #111; margin-top: 2px;">
+                <div class="qv-price">
                     ₱${product.price.toLocaleString('en-PH', {minimumFractionDigits: 2})}
                 </div>
                 
-                <div style="font-size: 12px; color: #28a745; display: flex; align-items: center; gap: 6px;">
+                <div class="qv-stock-status">
                     <i class="fa-solid fa-truck"></i> Inventory on the way
                 </div>
 
-                <button class="btn btn-primary" style="background: #f39c12; color: #fff; padding: 12px; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; text-transform: uppercase; font-size: 14px;" onclick="addQvToCart(${product.id})">
+                <button class="btn btn-primary qv-add-btn" onclick="addQvToCart(${product.id})">
                     Add to Cart
                 </button>
 
-                <div style="font-size: 12px; color: #555; line-height: 1.5; background: #fafafa; border: 1px solid #eee; padding: 12px; border-radius: 6px; max-height: 140px; overflow-y: auto; margin-top: 5px;">
+                <div class="qv-specs-box">
                     <strong>SPECIFICATIONS:</strong><br>
                     ${product.specs}
+                </div>
+
+                <!-- Warranty Badge & Policy Link -->
+                <div class="qv-warranty-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <strong>Warranty:</strong> 1-Year Manufacturer Warranty |
+                    <a href="#" onclick="openPolicyModal('warranty')">Learn More</a>
                 </div>
             </div>
         </div>
@@ -633,20 +640,27 @@ function showToast(title, message) {
     }, 4000);
 }
 
-// Process Checkout with Custom Toast Notification
+// Process Checkout with Custom Toast Notification & Policy Agreement Check
 function processCheckout() {
     if (cart.length === 0) {
-        alert("Your cart is empty.");
+        showToast("Cart Empty", "Your shopping cart is currently empty.");
         return;
     }
 
     if (!ygCustomerDetails.email || !ygCustomerDetails.address) {
-        alert("Please complete your contact and delivery information first.");
+        showToast("Missing Information", "Please complete your contact and delivery information first.");
         const customerStep = document.getElementById("yg-customer-step");
         const cartLayout = document.querySelector("#cart-modal .cart-layout");
 
         if (customerStep) customerStep.style.display = "block";
         if (cartLayout) cartLayout.style.display = "none";
+        return;
+    }
+
+    // Validate Policy Agreement Checkbox
+    const termsCheck = document.getElementById("terms-check");
+    if (termsCheck && !termsCheck.checked) {
+        showToast("Agreement Required", "Please agree to the Terms & Conditions, Warranty, and Cancellation Policy before placing your order.");
         return;
     }
 
@@ -678,11 +692,14 @@ function processCheckout() {
     if (cartLayout) cartLayout.style.display = "grid";
     if (detailsBox) detailsBox.style.display = "none";
     if (form) form.reset();
+
+    // Reset terms checkbox for next order
+    if (termsCheck) termsCheck.checked = false;
 }
 
 function submitInquiry(e) {
     e.preventDefault();
-    alert("Your inquiry has been submitted to Yama Gears staff.");
+    showToast("Inquiry Sent", "Your inquiry has been submitted to Yama Gears staff.");
     e.target.reset();
 }
 
@@ -970,3 +987,41 @@ function ygRenderExistingCart() {
     `;
     document.head.appendChild(style);
 })();
+
+const storePolicies = {
+    terms: `
+        <h2>Terms & Conditions</h2>
+        <p>Welcome to Yama Gears. By placing an order on our platform, you agree to the following terms:</p>
+        <ul>
+            <li><strong>Prices & Stock:</strong> Prices and availability of hardware (frames, brakes) and merchandise are subject to change without prior notice.</li>
+            <li><strong>Order Accuracy:</strong> Customers are responsible for verifying correct sizing (e.g., helmet size, frame size) before completing purchase.</li>
+            <li><strong>Payment:</strong> Orders are processed upon confirmation of payment via GCash, Maya, or cash on delivery/pickup.</li>
+        </ul>
+    `,
+    warranty: `
+        <h2>Warranty Policy</h2>
+        <p>Yama Gears stands by the quality of our MTB hardware and apparel:</p>
+        <ul>
+            <li><strong>Bicycles & Frames (Hardware):</strong> Covered by a 1-Year Limited Manufacturer Warranty against factory defects. Crash damage or improper installation is excluded.</li>
+            <li><strong>Components & Brakes:</strong> 6-Month Warranty against hydraulic leaks or mechanical failure under normal riding conditions.</li>
+            <li><strong>Apparel & Merch:</strong> 7-Day Replacement Policy for manufacturing defects (stitching, zippers) provided items are unworn with original tags intact.</li>
+        </ul>
+    `,
+    cancellation: `
+        <h2>Cancellation & Returns</h2>
+        <p>Our cancellation and return procedures are outlined below:</p>
+        <ul>
+            <li><strong>Order Cancellation:</strong> Orders can be cancelled free of charge within 2 hours of placement, provided they have not been dispatched for shipping.</li>
+            <li><strong>Returns & Exchanges:</strong> Returns are accepted within 7 days of receipt for unused items in original packaging.</li>
+            <li><strong>Refund Processing:</strong> Approved refunds will be processed via original payment method (GCash/Maya) within 3-5 business days.</li>
+        </ul>
+    `
+};
+
+function openPolicyModal(policyType) {
+    const modalBody = document.getElementById("policy-modal-body");
+    if (modalBody && storePolicies[policyType]) {
+        modalBody.innerHTML = storePolicies[policyType];
+        openModal("policy-modal");
+    }
+}
