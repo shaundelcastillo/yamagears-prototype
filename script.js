@@ -6,7 +6,8 @@ const products = [
         category: "jersey", 
         type: "merch", 
         price: 1250, 
-        specs: "Breathable Mesh, Quick-Dry, Japan Fabric", 
+        specs: "Breathable Mesh, Quick-Dry, Japan Fabric",
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/474109818_10040388159310241_2137057276779076982_n.jpg?stp=dst-jpg_tt6&cstp=mx1200x1500&ctp=s1200x1500&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEaZDMuuSeCYAKC5-kIFCHXfaC38S57zZp9oLfxLnvNmuNnTiYqVojiGKkqjCmnL1ey9U4F-bgU4tIIRAZsC_2G&_nc_ohc=B0zcuibGrdwQ7kNvwFNQZ1c&_nc_oc=AdpjJqyAMvDWmOZn2Pof7GJ6jA_xJJ2jOZSCOY07jLHYppXLyqqbsluBADgcIDYoOKA&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=26d5GhEH8kee1t1am1KRsQ&_nc_ss=7b2a8&oh=00_AQN_blks7OyykpzSslLg5FzGqOM4So21etL2u-9FuToaEQ&oe=6AD40980" 
     },
     { 
@@ -16,6 +17,7 @@ const products = [
         type: "merch", 
         price: 1250, 
         specs: "Breathable Mesh, Quick-Dry, Japan Fabric", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/829196416_4595113317408948_5019474691743977221_n.jpg?stp=dst-jpg_tt6&cstp=mx1169x1461&ctp=s1169x1461&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=V_Hia2MKaroQ7kNvwHxCwjt&_nc_oc=Adp8iOxWm1iZr9P0biuwh3CQWgdwZZ3kh1hdGHvfiLD2yPuthryPbTqDc0fPlmqM0yY&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=Te7PCJeeXwsoVCKV1uZUrA&_nc_ss=7b2a8&oh=00_AQOHUgaFgWaEuoQhRzDhbrYnwsdu301SnZSl4bKa_v48Kw&oe=6AD0182C" 
     },
     { 
@@ -25,6 +27,7 @@ const products = [
         type: "merch", 
         price: 1850, 
         specs: "100% Cotton, Embroidered Mountain Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/829196475_4595230730730540_2368457628400369438_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x445&ctp=s1024x445&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG6MWBVZJu1rxHVm7Jma3MPt81l6gnul5-3zWXqCe6Xn5M8rEj-MU16dTvaz3mWyTeqxzcoiq6Hbt1WIgcPPsj_&_nc_ohc=Vr8965PM9oQQ7kNvwF_whPS&_nc_oc=AdqH5av6SKeQE7azp8rZJR9vujHdL0yEtbyM_cgrpsD5SNpn0UK5zprzMVe5EP5mfmc&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=gIZ0Rv3TP84exLUgMCgYoQ&_nc_ss=7b2a8&oh=00_AQPNSVFBnu11_holQHXp6VIQQCtIqeArOuuSuSS8EYNsXA&oe=6AD3EFD5" 
     },
     { 
@@ -34,6 +37,7 @@ const products = [
         type: "merch", 
         price: 1850, 
         specs: "100% Cotton, Embroidered Mountain Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/825279990_4595322457388034_4947922182353773167_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x445&ctp=s1024x445&_nc_cat=100&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=3dfd7HqlVnMQ7kNvwEIGAzn&_nc_oc=Adov7wnCzDn3YtclNf6NimObMSWAj_ZP4uNIWxP2Gyc_QVqrUJ5QAU6PiQGUdh5R_yw&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=q-dMtVXttx1J19-elF-Kew&_nc_ss=7b2a8&oh=00_AQO-wa2a8VI5ToQnOEFlEqRrWt9yTSxVnJA37V9V1bONgw&oe=6AD0257B" 
     },
     { 
@@ -61,6 +65,7 @@ const products = [
         type: "merch", 
         price: 1450, 
         specs: "Casual Riding Apparel, Durable Stitching", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/829196692_4595228590730754_99512575118747408_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x445&ctp=s1024x445&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8WIo3iTlc2IQ7kNvwGbjW-x&_nc_oc=AdqtJLfdcnlMfuLYgvRugAusQr9jMx3mLY33wOYjErr7PNZKtAyxJO_zmhSqIxQMu00&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=HK4W4U9p6j2ScW6E2cuW9A&_nc_ss=7b2a8&oh=00_AQNBmCe3PchLtuhaK575lndkoPOzgm6ZLlFz33QrleZrXg&oe=6AD03AE9" 
     },
     { 
@@ -70,6 +75,7 @@ const products = [
         type: "merch", 
         price: 1450, 
         specs: "Casual Riding Apparel, Durable Stitching", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/829603726_4595324297387850_3842815601373458545_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x445&ctp=s1024x445&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=CVPMhxb17koQ7kNvwE92RBU&_nc_oc=AdrKaYJPj-0bcHHMY7m-ZXgFsII4D9_bagb4UkzAAcKmf2lyBcPf1vTyjwGdrVAzs1U&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=OYphGI7d8CwZmgKkeAlEOQ&_nc_ss=7b2a8&oh=00_AQPe2pEtxpBgNaPUrONjfjRC4-yScqo3wOIhDWaB8gYleg&oe=6AD0295B" 
     },
     { 
@@ -79,6 +85,7 @@ const products = [
         type: "merch", 
         price: 2100, 
         specs: "Windproof, Compact Foldable", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/829196475_4595230730730540_2368457628400369438_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x445&ctp=s1024x445&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=FK7rdswRMekQ7kNvwGsRp0I&_nc_oc=Adr3InIplO7epMyZJtMx9C5TFuGi6czqLfMLslfAn1o1IIBo80uE8SmGo51GKu8qQ8g&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=wn0WMn6L4i-bcyFvbpkXNg&_nc_ss=7b2a8&oh=00_AQMt5LF98yN0LLJGTMeB10IcoMvDmqyX9lkd3Xh_3oeV2w&oe=6AD03395" 
     },
     { 
@@ -88,6 +95,7 @@ const products = [
         type: "merch", 
         price: 2100, 
         specs: "Windproof, Compact Foldable", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/827282048_4595327407387539_214812346867746026_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x445&ctp=s1024x445&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=e8tbvK_-qkwQ7kNvwHTAZve&_nc_oc=AdqBcKDbrk_qqG8_u_jlqAJ-VydRIUSLLYmPTnRhkTMMbBukGwFXZVB-N7uYnnfPvsE&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=_KOaMYKX7Ae70O1tGrH4dQ&_nc_ss=7b2a8&oh=00_AQPSxhyARa8lBkv409tunsh_ST6pNaFFF14zNcZSoKrIow&oe=6AD03E4A" 
     },
     { 
@@ -97,6 +105,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-7.fna.fbcdn.net/v/t39.30808-6/508934861_24854078050848008_4407161644729323143_n.jpg?stp=dst-jpg_tt6&cstp=mx433x652&ctp=s433x652&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=eBIQDt2W7fQQ7kNvwFhCFqk&_nc_oc=Ado3qaxpZTzS--AjVNIfK4Lv-pz_1UcgJzli43qqT9Hc1xAYaLVF5sVrtnHlNtS90io&_nc_zt=23&_nc_ht=scontent.fmnl17-7.fna&_nc_gid=Tbu7ojvLYFMPhgHJWees4w&_nc_ss=7b2a8&oh=00_AQPqxhLo1SW9L5mMvr2GbEYVf6ImdvjvmR5w5Hsm5hqX2A&oe=6AD04623" 
     },
     { 
@@ -106,6 +115,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/508842546_24854078300847983_6867426397070189918_n.jpg?stp=dst-jpg_tt6&cstp=mx382x575&ctp=s382x575&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=j4WEa3BqjiEQ7kNvwEIj3oB&_nc_oc=AdpXPM5G5gd8hrFmeuTjW-0lvJN32pDgEUIRYZDb5-lSQzZHTAikaHCB1p6J-pW8OEg&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=Qz348RDw4JxvjnE9E3uciw&_nc_ss=7b2a8&oh=00_AQO-PdxG4wHq-x1v5RW2pZ83IquX5DF_XxW7R_Vh8mIqzw&oe=6AD01E6F" 
     },{ 
         id: 13, 
@@ -114,6 +124,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/509427727_24854078427514637_7727181357129933045_n.jpg?stp=dst-jpg_tt6&cstp=mx506x755&ctp=s506x755&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEuHkLBlmswX8ygITAKJxowN8fILYbj42E3x8gthuPjYQjCYmxtAnr8tm2P1pb5AxujMxp6tyLKG9H1bhe6h7Hy&_nc_ohc=jzHXdeJ78Z8Q7kNvwEVuf73&_nc_oc=Adr-PD7z-jftGEgabXv5YuO1m0JSzApDrtor3BcfN0-T092pz_wqz4LCwiIqtmBO6Mo&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=2ZC2x1jbtScb8Ykzlt5UtA&_nc_ss=7b2a8&oh=00_AQOe88PlhSn9BAb23ncpJtAj70bBoZ90ahh7_bRXZYKrCQ&oe=6AD3EF2C" 
     },{ 
         id: 14, 
@@ -122,6 +133,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/508826344_24854078137514666_1146843166710111177_n.jpg?stp=dst-jpg_tt6&cstp=mx505x757&ctp=s505x757&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=t3lvRrPdtRQQ7kNvwHD6Jqm&_nc_oc=AdpG3p0Wu1EjGjfpYsuPbFgK8DzY7TMKiFcbMlXg2_YyzhjZLGmzdfgVmqhPD2n5k6E&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=Q181Z2rEF4CSLydbHomogQ&_nc_ss=7b2a8&oh=00_AQPWub5tcFB_80bCOGteKBsagThRczZWSgnxfmrnf_HAlg&oe=6AD036D1" 
     },{ 
         id: 15, 
@@ -130,6 +142,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/509422884_24854078090848004_797114143126808645_n.jpg?stp=dst-jpg_tt6&cstp=mx505x759&ctp=s505x759&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=l5HdbIYC6V8Q7kNvwGDYqQB&_nc_oc=AdpVx3EM33uQ9mMpparDKXApi9cgy3DiydUhEwV_7tUh60sBv9vngB1iJ1JVnIBiojs&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=Umea5NG35ETzmM9qCUazcQ&_nc_ss=7b2a8&oh=00_AQOhs4BfXqrDBvPQkB4P1xq3meOsmi4MTSadM_5nW_zfBQ&oe=6AD01289" 
     },{ 
         id: 16, 
@@ -138,6 +151,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/508763675_24854078077514672_3559294976561690073_n.jpg?stp=dst-jpg_tt6&cstp=mx556x837&ctp=s556x837&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-nM-yrsjoy4Q7kNvwFGtqVp&_nc_oc=AdpT6VHUcBOTcIE4xyZO15WTNt6TaK6BSQglrUIb1z2tcfHEUVid1_XTIYdJ-x_xWek&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=OGTCaiDKD-4YAD1_1xYmlA&_nc_ss=7b2a8&oh=00_AQNIufqAszkkQ-LIE5T0XKTS8Db7cQw3wo9plT6P6NC1RA&oe=6AD0416E" 
     },{ 
         id: 17, 
@@ -146,6 +160,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/510169964_24854078084181338_5144954769614833930_n.jpg?stp=dst-jpg_tt6&cstp=mx505x762&ctp=s505x762&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFInZylCzSBFkdVPPxCGec8d6bOnMp5Bd93ps6cynkF3wfLY_FbgJ4bG9yQlqX6rZMQoQ7sH2GHdtmGfnAk6zj0&_nc_ohc=qmq3Mt5YtwAQ7kNvwGdMeA2&_nc_oc=Ado-YCAQoK21ICz38ZZZx1t6lwM9cfD82sjsh2DLB9foFO-G6RPwf8bWg9oJN213G70&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=92MLKLbAQwmfR9Jv9IBnNw&_nc_ss=7b2a8&oh=00_AQOMbBZ8kQW0QBjVYgWniTJeErGQrQ5sT8f6CB8SmFF7tw&oe=6AD3EC58" 
     },{ 
         id: 18, 
@@ -153,7 +168,8 @@ const products = [
         category: "tshirt", 
         type: "merch", 
         price: 750, 
-        specs: "Premium Cotton Blend, EST. 2020 Logo", 
+        specs: "Premium Cotton Blend, EST. 2020 Logo",
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/509406862_24854078154181331_513385687667375717_n.jpg?stp=dst-jpg_tt6&cstp=mx578x874&ctp=s578x874&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_ohc=XAkZL5PjdfUQ7kNvwE2uppX&_nc_oc=AdoqBIIPcL5dw4BevhW5BZKKpAkE_jhuBEdSZGJD0Wdrs7DUpsG0wxYKauMBqh425cw&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=7ZKjgYvha79ESCMvoaOzVg&_nc_ss=7b2a8&oh=00_AQPQa_EoTKxO6ljD3hRBoOm-JozRbXUyi9TsfNe3xfG1JA&oe=6AD038C4" 
     },{ 
         id: 19, 
@@ -162,6 +178,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/508610897_24854078094181337_3319065751272561834_n.jpg?stp=dst-jpg_tt6&cstp=mx1284x1004&ctp=s1284x1004&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEWMrir4LCqg12JkPidTddZUVtAu7W7YGxRW0C7tbtgbF3nqwlw8ZG1F01EWfcaHj6FwEW9E0CDIycftBHg8s5h&_nc_ohc=aDrSzosLF4UQ7kNvwFnVpss&_nc_oc=AdoqUEiewaaOMz7emePD5MMyAyylLNBzO_nuUrHrX_km_KE8K-3QS0_9cxS7P2avOtk&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=5iwz4bgCz4QJtzBYH26KSg&_nc_ss=7b2a8&oh=00_AQNZxHxtD0DJzLa5voRkz_6hCzq139d8uv1iTHc533iZ6g&oe=6AD3F4AB" 
     },
     { 
@@ -171,6 +188,7 @@ const products = [
         type: "merch", 
         price: 750, 
         specs: "Premium Cotton Blend, EST. 2020 Logo", 
+        sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
         image: "https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/508674447_24854078070848006_7075197354736139205_n.jpg?stp=dst-jpg_tt6&cstp=mx506x759&ctp=s506x759&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE7qT4Goqhnrs6d_Cp1o8LFBzo82G9qXCgHOjzYb2pcKECn-bJb7caOEOpv4V9v4KQnCl46vAXT9_Do_k7vkaVs&_nc_ohc=Wla8yjbMNmMQ7kNvwEZznOn&_nc_oc=AdqroTeTSjSWX489RJClc4PGOJMX71yrC_1cOdf_LOPMhHLINjPBtHvR82K6Z0H0xA4&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=-anqpSr-5BeALdkKWetfug&_nc_ss=7b2a8&oh=00_AQMW06flkDLMj0QS9bocjvW2387RiRi_NopJ5Xf_pj1-tg&oe=6AD409C1" 
     },
     { 
@@ -359,7 +377,11 @@ function renderProducts(items) {
                 <h3 class="product-title" style="cursor: pointer;" onclick="openQuickView(${product.id})">${product.name}</h3>
                 <p class="product-specs">${product.specs}</p>
                 <div class="product-price">₱${product.price.toLocaleString('en-PH', {minimumFractionDigits: 2})}</div>
-                <button class="btn btn-primary btn-block" onclick="addToCart(${product.id})">ADD TO ORDER</button>
+               <button class="btn btn-primary btn-block" onclick<button class="btn btn-primary btn-block"onclick="${product.sizes && product.sizes.length > 0
+        ? `openQuickView(${product.id})` : `addToCart(${product.id})`}"> ${product.sizes && product.sizes.length > 0
+        ? 'SELECT SIZE'
+        : 'ADD TO ORDER'}
+</button>
             </div>
         `;
         grid.appendChild(card);
@@ -369,6 +391,8 @@ function renderProducts(items) {
 function openQuickView(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
+
+    selectedQvSize = "";
 
     const images = (product.images && product.images.length > 0) 
         ? product.images.slice(0, 3) 
@@ -395,6 +419,22 @@ function openQuickView(productId) {
             <div class="qv-details-column">
                 <h2 class="qv-title">${product.name}</h2>
                 <div class="qv-rating">⭐⭐⭐⭐⭐ <span>0 Reviews</span></div>
+
+                ${product.sizes && product.sizes.length > 0 ? `
+    <div class="qv-size-wrapper">
+        <span class="qv-size-label">Select Size</span>
+        <div class="qv-size-options">
+            ${product.sizes.map(size => `
+                <button
+                    type="button"
+                    class="size-pill"
+                    onclick="selectApparelSize(this, '${size}')">
+                    ${size}
+                </button>
+            `).join('')}
+        </div>
+    </div>
+` : ''}
                 
                 <div class="qv-qty-wrapper">
                     <span class="qv-qty-label">Quantity</span>
@@ -435,6 +475,19 @@ function openQuickView(productId) {
     openModal('quick-view-modal');
 }
 
+let selectedQvSize = "";
+
+function selectApparelSize(button, size) {
+    selectedQvSize = size;
+
+    document.querySelectorAll(".size-pill").forEach(pill => {
+        pill.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+}
+
+
 function switchQvImage(imgSrc, thumbElement) {
     document.getElementById('qv-active-img').src = imgSrc;
     document.querySelectorAll('.qv-thumb').forEach(t => {
@@ -455,17 +508,36 @@ function adjustQvQty(change) {
 
 function addQvToCart(productId) {
     const product = products.find(p => p.id === productId);
-    const qtyInput = document.getElementById('qv-qty-input');
-    const quantity = qtyInput ? parseInt(qtyInput.value) : 1;
+    const qtyInput = document.getElementById("qv-qty-input");
+    const quantity = qtyInput ? Math.max(1, parseInt(qtyInput.value, 10) || 1) : 1;
 
-    if (product) {
-        for (let i = 0; i < quantity; i++) {
-            cart.push(product);
-        }
-        saveCart();
-        showToast("Added to Cart", `${quantity} x ${product.name} added to your order.`);
-        closeModal('quick-view-modal');
+    if (!product) return;
+
+    // Apparel products with sizes require a size selection.
+    if (product.sizes && product.sizes.length > 0 && !selectedQvSize) {
+        showToast("Select a Size", "Please choose a size before adding to your order.");
+        return;
     }
+
+    for (let i = 0; i < quantity; i++) {
+        cart.push({
+            ...product,
+            selectedSize: selectedQvSize || null
+        });
+    }
+
+    saveCart();
+
+    const sizeMessage = selectedQvSize
+        ? ` (Size: ${selectedQvSize})`
+        : "";
+
+    showToast(
+        "Added to Cart",
+        `${quantity} x ${product.name}${sizeMessage} added to your order.`
+    );
+
+    closeModal("quick-view-modal");
 }
 
 // Filter Categories
