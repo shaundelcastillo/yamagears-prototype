@@ -87,123 +87,170 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <span class="logo-main">YAMA</span><span class="logo-sub">GEARS</span>
-                <p>Official Store Operations & Fulfillment System. Shipping Direct from Japan to the Philippines.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="products.html?category=merch">Apparel & Merch</a></li>
-                    <li><a href="products.html?category=bikes">MTB Parts & Bikes</a></li>
-                    <li><a href="track-order.html">Order Tracking</a></li>
-                    <li><a href="contact.html">Inquiry Form</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Payment Options</h4>
-                <p><i class="fa-solid fa-credit-card"></i> Credit / Debit Cards Integration Supported</p>
-                <p><i class="fa-solid fa-store"></i> Actual Store Pick-up Options Available</p>
-            </div>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <span class="logo-main">YAMA</span><span class="logo-sub">GEARS</span>
+            <p>Official Store Operations & Fulfillment System. Shipping Direct from Japan to the Philippines.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Yama Gears. System Prototype for Benedicto College Capstone Presentation.</p>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="products.html?category=merch">Apparel & Merch</a></li>
+                <li><a href="products.html?category=bikes">MTB Parts & Bikes</a></li>
+                <li><a href="track-order.html">Order Tracking</a></li>
+                <li><a href="contact.html">Inquiry Form</a></li>
+            </ul>
         </div>
-    </footer>
+        <!-- Added Store Policies Column -->
+        <div class="footer-col">
+            <h4>Store Policies</h4>
+            <ul>
+                <li><a href="#" onclick="openPolicyModal('terms')">Terms & Conditions</a></li>
+                <li><a href="#" onclick="openPolicyModal('warranty')">Warranty Policy</a></li>
+                <li><a href="#" onclick="openPolicyModal('cancellation')">Cancellation & Returns</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Payment Options</h4>
+            <p><i class="fa-solid fa-credit-card"></i> Credit / Debit Cards Integration Supported</p>
+            <p><i class="fa-solid fa-store"></i> Actual Store Pick-up Options Available</p>
+            <a href="https://www.facebook.com/profile.php?id=100066502910467"><i id="icon" class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/yama_gears/"><i id="icon" class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Yama Gears. System Prototype for Benedicto College Capstone Presentation.</p>
+    </div>
+</footer>
+
+<!-- Shared Policy Modal Container (place right under the </footer> tag) -->
+<div class="modal" id="policy-modal" style="display: none;">
+    <div class="policy-modal-content">
+        <button class="policy-close-btn" onclick="closeModal('policy-modal')">&times;</button>
+        <div id="policy-modal-body" class="policy-body"></div>
+    </div>
+</div>
 
     <!-- MODAL: Cart & Checkout System -->
-    <div class="modal" id="cart-modal">
-        <div class="modal-content modal-wide">
-            <span class="close-btn" onclick="closeModal('cart-modal')">&times;</span>
-            <h2>Your Shopping Cart & Order Checkout</h2>
-            <div class="cart-layout">
-                <div class="cart-items-list" id="cart-items-container"></div>
-                <div class="cart-checkout-summary">
-                    <h3>Order Summary</h3>
-                    <div class="summary-line"><span>Subtotal:</span> <span id="cart-subtotal">₱0.00</span></div>
-                    <div class="summary-line"><span>Shipping (Japan to PH):</span> <span id="cart-shipping">₱250.00</span></div>
-                    <hr>
-                    <div class="summary-line total-line"><span>Total:</span> <span id="cart-total">₱0.00</span></div>
+<div class="modal" id="cart-modal">
+    <div class="modal-content modal-wide">
+        <span class="close-btn" onclick="closeModal('cart-modal')">&times;</span>
+        <h2>Your Shopping Cart & Order Checkout</h2>
+        <div class="cart-layout">
+            <div class="cart-items-list" id="cart-items-container">
+                <!-- Dynamic cart items -->
+            </div>
+            <div class="cart-checkout-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-line"><span>Subtotal:</span> <span id="cart-subtotal">₱0.00</span></div>
+                <div class="summary-line"><span>Shipping (Japan to PH):</span> <span id="cart-shipping">₱250.00</span></div>
+                <hr>
+                <div class="summary-line total-line"><span>Total:</span> <span id="cart-total">₱0.00</span></div>
 
-                    <div class="payment-options">
-                        <h4 class="payment-title">Payment Options</h4>
-                        <div class="payment-methods">
-                            <label class="pay-option">
-                                <input type="radio" name="paymethod" value="card" checked onclick="togglePaymentForm('card')">
-                                <span><i class="fa-solid fa-credit-card"></i> Credit / Debit Card</span>
-                            </label>
-                            <label class="pay-option">
-                                <input type="radio" name="paymethod" value="gcash" onclick="togglePaymentForm('gcash')">
-                                <span><i class="fa-solid fa-mobile-screen-button"></i> GCash</span>
-                            </label>
-                            <label class="pay-option">
-                                <input type="radio" name="paymethod" value="maya" onclick="togglePaymentForm('maya')">
-                                <span><i class="fa-solid fa-wallet"></i> Maya</span>
-                            </label>
-                            <label class="pay-option">
-                                <input type="radio" name="paymethod" value="store" onclick="togglePaymentForm('store')">
-                                <span><i class="fa-solid fa-store"></i> Store Pickup / Cash</span>
-                            </label>
-                        </div>
-
-                        <!-- Grey Box Container -->
-                        <div class="card-form-box">
-                            
-                            <!-- 1. Credit / Debit Card Form -->
-                            <div id="card-form" class="payment-form-section">
-                                <div class="form-group">
-                                    <label>Cardholder Name</label>
-                                    <input type="text" placeholder="Name on card">
-                                </div>
-                                <div class="form-group">
-                                    <label>Card Number</label>
-                                    <input type="text" placeholder="XXXX - XXXX - XXXX - XXXX">
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label>Expiry</label>
-                                        <input type="text" placeholder="MM/YY">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>CVC</label>
-                                        <input type="text" placeholder="123">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 2. GCash Form -->
-                            <div id="gcash-form" class="payment-form-section" style="display: none;">
-                                <p style="font-size: 13px; margin-bottom: 8px;">Send payment to <strong>09XX-XXX-XXXX (Yama Gears)</strong></p>
-                                <div class="form-group">
-                                    <label>GCash Reference Number</label>
-                                    <input type="text" placeholder="Enter 13-digit Reference No.">
-                                </div>
-                            </div>
-
-                            <!-- 3. Maya Form -->
-                            <div id="maya-form" class="payment-form-section" style="display: none;">
-                                <p style="font-size: 13px; margin-bottom: 8px;">Send payment to <strong>09XX-XXX-XXXX (Yama Gears)</strong></p>
-                                <div class="form-group">
-                                    <label>Maya Reference Number</label>
-                                    <input type="text" placeholder="Enter Reference No.">
-                                </div>
-                            </div>
-
-                            <!-- 4. Store Pickup Form -->
-                            <div id="store-form" class="payment-form-section" style="display: none;">
-                                <p style="font-size: 13px;">Pay cash upon pickup at our official store location.</p>
-                            </div>
-
-                        </div>
-
-                        <button class="btn btn-primary btn-block" onclick="processCheckout()" style="margin-top: 15px;">PLACE ORDER & PAY NOW</button>
+                <div class="payment-options">
+                    <h4 class="payment-title">Payment Options</h4>
+                    <div class="payment-methods">
+                        <label class="pay-option">
+                            <input type="radio" name="paymethod" value="card" checked onclick="togglePaymentForm('card')">
+                            <span><i class="fa-solid fa-credit-card"></i> Credit / Debit Card</span>
+                        </label>
+                        <label class="pay-option">
+                            <input type="radio" name="paymethod" value="gcash" onclick="togglePaymentForm('gcash')">
+                            <span><i class="fa-solid fa-mobile-screen-button"></i> GCash</span>
+                        </label>
+                        <label class="pay-option">
+                            <input type="radio" name="paymethod" value="maya" onclick="togglePaymentForm('maya')">
+                            <span><i class="fa-solid fa-wallet"></i> Maya</span>
+                        </label>
+                        <label class="pay-option">
+                            <input type="radio" name="paymethod" value="store" onclick="togglePaymentForm('store')">
+                            <span><i class="fa-solid fa-store"></i> Store Pickup / Cash</span>
+                        </label>
                     </div>
+
+                    <!-- Grey Form Container -->
+                    <div class="card-form-box">
+                        <!-- 1. Credit / Debit Card Form -->
+                        <div id="card-form" class="payment-form-section">
+                            <div class="form-group">
+                                <label>Cardholder Name</label>
+                                <input type="text" placeholder="Name on card">
+                            </div>
+                            <div class="form-group">
+                                <label>Card Number</label>
+                                <input type="text" placeholder="XXXX - XXXX - XXXX - XXXX">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Expiry</label>
+                                    <input type="text" placeholder="MM/YY">
+                                </div>
+                                <div class="form-group">
+                                    <label>CVC</label>
+                                    <input type="text" placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. GCash Form -->
+                        <div id="gcash-form" class="payment-form-section" style="display: none;">
+                            <p style="font-size: 13px; margin-bottom: 8px;">Send payment to <strong>09XX-XXX-XXXX (Yama Gears)</strong></p>
+                            <div class="form-group">
+                                <label>GCash Reference Number</label>
+                                <input type="text" placeholder="Enter 13-digit Reference No.">
+                            </div>
+                        </div>
+
+                        <!-- 3. Maya Form -->
+                        <div id="maya-form" class="payment-form-section" style="display: none;">
+                            <p style="font-size: 13px; margin-bottom: 8px;">Send payment to <strong>09XX-XXX-XXXX (Yama Gears)</strong></p>
+                            <div class="form-group">
+                                <label>Maya Reference Number</label>
+                                <input type="text" placeholder="Enter Reference No.">
+                            </div>
+                        </div>
+
+                        <!-- 4. Store Pickup Form -->
+                        <div id="store-form" class="payment-form-section" style="display: none;">
+                            <p style="font-size: 13px;">Pay cash upon pickup at our official store location.</p>
+                        </div>
+                    </div>
+
+                    <!-- Policy Checkbox Confirmation -->
+                    <div class="checkout-terms-container">
+                        <input type="checkbox" id="terms-check" required>
+                        <label for="terms-check" class="checkout-terms-label">
+                            I agree to the <a href="#" onclick="openPolicyModal('terms')">Terms & Conditions</a>, 
+                            <a href="#" onclick="openPolicyModal('warranty')">Warranty</a>, and 
+                            <a href="#" onclick="openPolicyModal('cancellation')">Cancellation Policy</a>.
+                        </label>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" onclick="processCheckout()" style="margin-top: 15px;">PLACE ORDER & PAY NOW</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+    <!-- Floating Facebook & Instagram Social Links -->
+    <div class="floating-social">
+        <a href="https://www.facebook.com/profile.php?id=100066502910467" target="_blank" class="social-btn facebook" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/yama_gears/" target="_blank" class="social-btn instagram" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </div>
+
+    <!-- Product Details Modal -->
+<div class="modal" id="quick-view-modal" style="display: none;">
+    <div class="modal-content qv-modal-content">
+        <span class="close-btn qv-close-btn" onclick="closeModal('quick-view-modal')">&times;</span>
+        <div id="quick-view-body"></div>
+    </div>
+</div>
 
     <script src="script.js"></script>
 </body>
