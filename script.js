@@ -377,10 +377,10 @@ function renderProducts(items) {
                 <h3 class="product-title" style="cursor: pointer;" onclick="openQuickView(${product.id})">${product.name}</h3>
                 <p class="product-specs">${product.specs}</p>
                 <div class="product-price">₱${product.price.toLocaleString('en-PH', {minimumFractionDigits: 2})}</div>
-               <button class="btn btn-primary btn-block" onclick<button class="btn btn-primary btn-block"onclick="${product.sizes && product.sizes.length > 0
-        ? `openQuickView(${product.id})` : `addToCart(${product.id})`}"> ${product.sizes && product.sizes.length > 0
-        ? 'SELECT SIZE'
-        : 'ADD TO ORDER'}
+             <button class="btn btn-primary btn-block"onclick="${product.sizes && product.sizes.length > 0
+        ? `openQuickView(${product.id})`
+        : `addToCart(${product.id})`}">
+    ADD TO CART
 </button>
             </div>
         `;
@@ -611,17 +611,21 @@ function trackFromBanner() {
 
 function addToCart(id) {
     const item = products.find(p => p.id === id);
-    if (item) {
-        cart.push(item);
-        saveCart();
-
-        const badge = document.getElementById("cart-count");
-        if (badge) {
-            badge.classList.add("pulse");
-            setTimeout(() => badge.classList.remove("pulse"), 500);
-        }
+    if (item) return;
+    
+    if (item.size && item.sizes.length > 0 ) {
+        openQuickView(id);
+        return;
     }
+       cart.push({
+        ...item,
+        selectedSize: null
+    });
+
+        saveCart();
+        showToast("Added to Cart", '${item.name} added to your order.');
 }
+    
 
 // Open Cart & Two-Step Checkout Function
 function openCart() {
@@ -980,10 +984,17 @@ function ygRenderExistingCart() {
         cart.forEach(item => {
             const row = document.createElement("div");
             row.className = "summary-line";
-            row.innerHTML = `
-                <span>${ygEscape(item.name)}</span>
-                <span>₱${Number(item.price).toLocaleString("en-PH", { minimumFractionDigits: 2 })}</span>
-            `;
+
+            
+const itemDetails = item.selectedSize
+    ? `${ygEscape(item.name)}<br><small class="cart-item-size">Size: ${ygEscape(item.selectedSize)}</small>`
+    : ygEscape(item.name);
+
+row.innerHTML = `
+    <span>${itemDetails}</span>
+    <span>₱${Number(item.price).toLocaleString("en-PH", { minimumFractionDigits: 2 })}</span>
+`;
+
             container.appendChild(row);
         });
     }
