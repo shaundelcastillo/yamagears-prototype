@@ -51,57 +51,47 @@
         <!-- Dynamic Tab Contents -->
         <div class="content-body">
             
-            <!-- OVERVIEW TAB -->
-            <section id="tab-overview" class="tab-content active">
-                <!-- Metrics Grid -->
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-info">
-                            <h3>Total Sales</h3>
-                            <p class="value">₱148,250.00</p>
-                        </div>
-                        <i class="fa-solid fa-coins metric-icon"></i>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-info">
-                            <h3>Total Orders</h3>
-                            <p class="value">42</p>
-                        </div>
-                        <i class="fa-solid fa-bag-shopping metric-icon"></i>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-info">
-                            <h3>Active Inventory</h3>
-                            <p class="value" id="metric-inventory-count">0</p>
-                        </div>
-                        <i class="fa-solid fa-cubes metric-icon"></i>
-                    </div>
-                </div>
+           <!-- OVERVIEW TAB -->
+<section id="tab-overview" class="tab-content active">
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-info"><h3>Total Sales</h3><p class="value">₱148,250.00</p></div>
+            <i class="fa-solid fa-coins metric-icon"></i>
+        </div>
+        <div class="metric-card">
+            <div class="metric-info"><h3>Total Orders</h3><p class="value">42</p></div>
+            <i class="fa-solid fa-bag-shopping metric-icon"></i>
+        </div>
+        <div class="metric-card">
+            <div class="metric-info"><h3>Active Inventory</h3><p class="value" id="metric-inventory-count">24</p></div>
+            <i class="fa-solid fa-cubes metric-icon"></i>
+        </div>
+    </div>
 
-                <!-- Recent Orders Preview -->
-                <div class="data-card">
-                    <div class="card-header">
-                        <h2>Recent Orders</h2>
-                    </div>
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer</th>
-                                    <th>Payment</th>
-                                    <th>Total</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="recent-orders-table">
-                                <!-- Populated by JS -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
+    <div class="data-card">
+        <div class="card-header"><h2>Recent Orders</h2></div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Product Ordered</th>
+                        <th>Size</th>
+                        <th>Payment</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="recent-orders-table">
+                    <tr><td><b>YG-9356</b></td><td>Paul Rodriguez</td><td>Yama Pro Helmet Matte Black</td><td>L</td><td>GCash</td><td>₱1,250.00</td><td><span style="padding:6px 12px; border-radius:6px; background:#1e3a2a; color:#2ecc71; font-weight:bold; font-size:12px;">DELIVERED</span></td></tr>
+                    <tr><td><b>YG-1167</b></td><td>Julian Fernandez</td><td>Yama Riding Jacket</td><td>XL</td><td>Card</td><td>₱20,999.00</td><td><span style="padding:6px 12px; border-radius:6px; background:#1e3a2a; color:#2ecc71; font-weight:bold; font-size:12px;">DELIVERED</span></td></tr>
+                    <tr><td><b>YG-5345</b></td><td>Alex Mercado</td><td>Yama Gears Trail Jersey Mtb</td><td>M</td><td>Store Pickup</td><td>₱138,000.00</td><td><span style="padding:6px 12px; border-radius:6px; background:#1e3a2a; color:#2ecc71; font-weight:bold; font-size:12px;">DELIVERED</span></td></tr>
+                    <tr><td><b>YG-7746</b></td><td>Carlos Reyes</td><td>Yama Gloves Carbon</td><td>M</td><td>GCash</td><td>₱5,499.00</td><td><span style="padding:6px 12px; border-radius:6px; background:#1e3a2a; color:#2ecc71; font-weight:bold; font-size:12px;">DELIVERED</span></td></tr>
+            </table>
+        </div>
+    </div>
+</section>
             <!-- PRODUCTS MANAGEMENT TAB -->
             <section id="tab-products" class="tab-content">
                 <div class="action-bar">
