@@ -611,19 +611,20 @@ function trackFromBanner() {
 
 function addToCart(id) {
     const item = products.find(p => p.id === id);
-    if (item) return;
+    if (!item) return; 
     
-    if (item.size && item.sizes.length > 0 ) {
+    if (item.sizes && item.sizes.length > 0) {
         openQuickView(id);
         return;
     }
-       cart.push({
+
+    cart.push({
         ...item,
         selectedSize: null
     });
 
-        saveCart();
-        showToast("Added to Cart", '${item.name} added to your order.');
+    saveCart();
+    showToast("Added to Cart", `${item.name} added to your order.`);
 }
     
 
