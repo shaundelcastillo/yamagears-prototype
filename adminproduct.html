@@ -27,6 +27,7 @@
             </a>
             <a href="adminsettings.html" class="nav-item">
                 <i class="fa-solid fa-gear"></i> Settings
+            </a>
         </nav>
         <div class="sidebar-footer">
             <a href="index.html" class="nav-item logout">
@@ -115,7 +116,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Type</label>
-                        <select id="prod-type" class="form-control">
+                        <select id="prod-type" class="form-control" onchange="toggleSizeField()">
                             <option value="merch">Primary (Merch)</option>
                             <option value="bikes">Secondary (Bikes & Parts)</option>
                         </select>
@@ -150,6 +151,12 @@
                 <div class="form-group">
                     <label>Specifications / Description</label>
                     <input type="text" id="prod-specs" class="form-control" required placeholder="e.g. Breathable Mesh, Quick-Dry">
+                </div>
+
+                <!-- Sizes Field with Wrapper ID for Dynamic Toggling -->
+                <div class="form-group" id="sizes-container">
+                    <label>Sizes (Comma-separated for apparel)</label>
+                    <input type="text" id="prod-sizes" class="form-control" placeholder="e.g. S, M, L, XL, 2XL, 3XL">
                 </div>
 
                 <div class="form-group">

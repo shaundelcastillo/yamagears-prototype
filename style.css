@@ -174,14 +174,9 @@ body {
     padding-left: 14px;
 }
 
-.dropdown-divider {
-    height: 1px;
-    background-color: var(--border-color);
-    margin: 5px 0;
-}
-
 .nav-actions {
     display: flex;
+    align-items: center;
     gap: 15px;
 }
 
@@ -207,6 +202,32 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Inline Search Wrapper */
+.nav-search-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.nav-search-wrapper input {
+    width: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    transition: width 0.3s ease, padding 0.3s ease, border-bottom 0.3s ease;
+    font-size: 14px;
+    color: var(--secondary-black);
+}
+
+.nav-search-wrapper.active input {
+    width: 200px;
+    padding: 6px 10px;
+    border-bottom: 2px solid var(--secondary-black);
+    background: #fff;
+    margin-right: 8px;
 }
 
 /* Hero Section */
@@ -297,21 +318,11 @@ body {
     color: #000000;
 }
 
-.btn-outline {
-    background-color: transparent;
-    color: var(--secondary-black);
-}
-
-.btn-outline:hover {
-    background-color: var(--secondary-black);
-    color: #FFFFFF;
-}
-
 .btn-block {
     width: 100%;
 }
 
-/* Category Grid */
+/* Category Grid & Products Section */
 .categories-showcase, .products-section {
     max-width: 1200px;
     margin: 60px auto;
@@ -428,7 +439,6 @@ body {
     z-index: 2;
 }
 
-/* Updated Product Image Container & Img Styling */
 .product-image {
     height: 220px;
     width: 100%;
@@ -519,7 +529,6 @@ body {
     padding: 20px;
 }
 
-/* Force flex centering whenever the modal is shown */
 .modal.active,
 .modal[style*="display: block"],
 .modal[style*="display: flex"] {
@@ -549,45 +558,6 @@ body {
     font-size: 24px;
     cursor: pointer;
     font-weight: bold;
-}
-
-.modal-sub {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-/* Inline Search Wrapper */
-.nav-search-wrapper {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.nav-search-wrapper input {
-    width: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-    background: transparent;
-    transition: width 0.3s ease, padding 0.3s ease, border-bottom 0.3s ease;
-    font-size: 14px;
-    color: var(--secondary-black);
-}
-
-/* Expanded state when search icon is clicked */
-.nav-search-wrapper.active input {
-    width: 200px;
-    padding: 6px 10px;
-    border-bottom: 2px solid var(--secondary-black);
-    background: #fff;
-    margin-right: 8px;
 }
 
 .form-group {
@@ -663,6 +633,125 @@ body {
     font-size: 13px;
 }
 
+/* Two-Step Checkout Form Grid Layout */
+#yg-customer-step {
+    padding: 20px 0;
+}
+
+#yg-customer-step h3, 
+#yg-saved-customer-details h3 {
+    margin: 22px 0 12px 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.yg-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.yg-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.yg-full {
+    grid-column: 1 / -1;
+}
+
+.yg-field input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font: inherit;
+    background: #fff;
+}
+
+.yg-checkout-actions {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+#yg-saved-customer-details {
+    padding: 16px;
+    margin: 16px 0;
+    background: var(--accent-gray);
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+#yg-saved-customer-details p {
+    margin: 8px 0;
+}
+
+@media (max-width: 600px) {
+    .yg-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .yg-full {
+        grid-column: auto;
+    }
+    .yg-checkout-actions {
+        flex-direction: column;
+    }
+    .yg-checkout-actions button {
+        width: 100%;
+    }
+}
+
+/* Clean Cart Row & Delete Icon Styles */
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-right: 12px;
+}
+
+.cart-item-name {
+    font-weight: 500;
+    color: #222;
+}
+
+.cart-item-price {
+    font-weight: 600;
+    color: #111;
+}
+
+.cart-remove-btn {
+    background: transparent;
+    border: none;
+    color: #999;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-remove-btn:hover {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+}
+
 /* Footer */
 .footer {
     background-color: var(--secondary-black);
@@ -711,43 +800,44 @@ body {
     color: #888888;
 }
 
-/* Floating Social Media Widget (Bottom Right Corner) */
+/* Floating Social Media Widget */
 .floating-social {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .social-btn {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 22px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, background-color 0.2s ease;
-  text-decoration: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    text-decoration: none;
 }
 
 .social-btn.facebook {
-  background-color: #1877f2;
+    background-color: #1877f2;
 }
 
 .social-btn.instagram {
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #df3456 45%, #d6249f 60%, #285AEB 90%);
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #df3456 45%, #d6249f 60%, #285AEB 90%);
 }
 
 .social-btn:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
+/* Toast Notifications */
 .toast-notification {
     position: fixed;
     bottom: 30px;
@@ -789,7 +879,6 @@ body {
     color: #666;
 }
 
-/* Policy Modal Styles */
 /* Policy Modal Styles */
 .policy-modal-content {
     max-width: 650px;
@@ -865,7 +954,7 @@ body {
     color: #f39c12;
 }
 
-/* --- Quick View Modal & Warranty Styling --- */
+/* Quick View Modal & Warranty Styling */
 .qv-modal-content {
     max-width: 900px;
     width: 90%;
@@ -1023,7 +1112,6 @@ body {
     margin-top: 5px;
 }
 
-/* Warranty Badge Styling */
 .qv-warranty-badge {
     font-size: 12px;
     color: #666;
@@ -1048,7 +1136,6 @@ body {
 .qv-warranty-badge a:hover {
     color: #f39c12;
 }
-
 
 /* Apparel Size Selector */
 .qv-size-wrapper {

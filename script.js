@@ -199,7 +199,6 @@ const products = [
         price: 22500, 
         specs: "SMITH Mainline full-face helmet in Size Medium, comes with its original storage bag.", 
         image: "images/parts/smith helmet.jpg", 
-        // Add 3 helmet angle URLs here:
         images: [
             "images/parts/smith helmet1st.jpg",
             "images/parts/smith helmet2nd.jpg",
@@ -214,7 +213,6 @@ const products = [
         price: 20999, 
         specs: "Adjustable visor, optimized ventilation ports, and extended coverage on the back of the head typical for trail and enduro riding.", 
         image: "images/parts/fox profame.jpg", 
-        // Add 3 helmet angle URLs here:
         images: [
             "images/parts/fox profame1st.jpg",
             "images/parts/fox profame2nd.jpg",
@@ -229,7 +227,6 @@ const products = [
         price: 20999, 
         specs: "SMITH Mainline full-face helmet in Size Medium, comes with its original storage bag.", 
         image: "images/parts/yeti cycles.jpg", 
-        // Add 3 helmet angle URLs here:
         images: [
             "images/parts/yeti cycles1st.jpg",
             "images/parts/yeti cycles2nd.jpg",
@@ -237,7 +234,7 @@ const products = [
         ]
     },
     
-    // //SECONDARY PRODUCTS: MTB Parts & Complete Bikes
+    // SECONDARY PRODUCTS: MTB Parts & Complete Bikes
     { 
         id: 24, 
         name: "SRAM Code R hydraulic disc brake lever", 
@@ -246,7 +243,6 @@ const products = [
         price: 8500, 
         specs: "Imported Japan Stock, 4-Piston.", 
         image: "images/parts/trp evo.jpg", 
-        // Add 3 helmet angle URLs here:
         images: [
             "images/parts/trp evo.jpg",
             "images/parts/trp evo1st.jpg",
@@ -270,7 +266,6 @@ const products = [
         price: 74000, 
         specs: "Transition Downhill Frame w/ headset", 
         image: "images/bikes/tr11bro.jpg", 
-        // Add 3 helmet angle URLs here:
         images: [
             "images/bikes/tr11bro1st.jpg",
             "images/bikes/tr11bro2nd.jpg",
@@ -285,7 +280,6 @@ const products = [
         price: 138000, 
         specs: "SRAM 1x12 Speed, Öhlins Air Suspension, SRAM Code R Brakes, Medium", 
         image: "images/bikes/bold linkin.jpg", 
-        // Add 3 helmet angle URLs here:
         images: [
             "images/bikes/Bold Linkin1st.jpg",
             "images/bikes/bold linkin2nd.jpg",
@@ -300,7 +294,6 @@ const products = [
         price: 200000, 
         specs: "Aggressive long-travel enduro bike built to conquer high-speed downhill trails and rough technical terrain.", 
         image: "images/bikes/trek.jpg", 
-        // Add 3 helmet angle URLs here:
         images: [
             "images/bikes/trek1st.jpg",
             "images/bikes/trek2nd.jpg",
@@ -315,7 +308,6 @@ const products = [
         price: 250000, 
         specs: "Versatile all-mountain trail bike with adjustable geometry, engineered for smooth climbing and aggressive descents.", 
         image: "images/bikes/specialized.jpg", 
-        // Add 3 helmet angle URLs here:
         images: [
             "images/bikes/specialized1st.jpg",
             "images/bikes/specialized2nd.jpg",
@@ -370,14 +362,14 @@ function renderProducts(items) {
         card.className = "product-card";
         card.innerHTML = `
             <span class="priority-tag">${priorityLabel}</span>
-            <div class="product-image" style="cursor: pointer;" onclick="openQuickView(${product.id})">
+            <div class="product-image" onclick="openQuickView(${product.id})">
                 <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=No+Image+Available';">
             </div>
             <div class="product-info">
-                <h3 class="product-title" style="cursor: pointer;" onclick="openQuickView(${product.id})">${product.name}</h3>
+                <h3 class="product-title" onclick="openQuickView(${product.id})">${product.name}</h3>
                 <p class="product-specs">${product.specs}</p>
                 <div class="product-price">₱${product.price.toLocaleString('en-PH', {minimumFractionDigits: 2})}</div>
-             <button class="btn btn-primary btn-block"onclick="${product.sizes && product.sizes.length > 0
+             <button class="btn btn-primary btn-block" onclick="${product.sizes && product.sizes.length > 0
         ? `openQuickView(${product.id})`
         : `addToCart(${product.id})`}">
     ADD TO CART
@@ -466,7 +458,7 @@ function openQuickView(productId) {
                 <div class="qv-warranty-badge">
                     <i class="fa-solid fa-shield-halved"></i>
                     <strong>Warranty:</strong> 1-Year Manufacturer Warranty |
-                    <a href="#" onclick="openPolicyModal('warranty')">Learn More</a>
+                    <a href="#" onclick="openPolicyModal('warranty', event)">Learn More</a>
                 </div>
             </div>
         </div>
@@ -486,7 +478,6 @@ function selectApparelSize(button, size) {
 
     button.classList.add("selected");
 }
-
 
 function switchQvImage(imgSrc, thumbElement) {
     document.getElementById('qv-active-img').src = imgSrc;
@@ -513,7 +504,6 @@ function addQvToCart(productId) {
 
     if (!product) return;
 
-    // Apparel products with sizes require a size selection.
     if (product.sizes && product.sizes.length > 0 && !selectedQvSize) {
         showToast("Select a Size", "Please choose a size before adding to your order.");
         return;
@@ -611,7 +601,7 @@ function trackFromBanner() {
 
 function addToCart(id) {
     const item = products.find(p => p.id === id);
-    if (!item) return; 
+    if (!item) return;
     
     if (item.sizes && item.sizes.length > 0) {
         openQuickView(id);
@@ -626,7 +616,6 @@ function addToCart(id) {
     saveCart();
     showToast("Added to Cart", `${item.name} added to your order.`);
 }
-    
 
 // Open Cart & Two-Step Checkout Function
 function openCart() {
@@ -734,7 +723,6 @@ function processCheckout() {
         return;
     }
 
-    // Validate Policy Agreement Checkbox
     const termsCheck = document.getElementById("terms-check");
     if (termsCheck && !termsCheck.checked) {
         showToast("Agreement Required", "Please agree to the Terms & Conditions, Warranty, and Cancellation Policy before placing your order.");
@@ -770,7 +758,6 @@ function processCheckout() {
     if (detailsBox) detailsBox.style.display = "none";
     if (form) form.reset();
 
-    // Reset terms checkbox for next order
     if (termsCheck) termsCheck.checked = false;
 }
 
@@ -982,19 +969,23 @@ function ygRenderExistingCart() {
     if (cart.length === 0) {
         container.innerHTML = "<p>Your cart is empty.</p>";
     } else {
-        cart.forEach(item => {
+        cart.forEach((item, index) => {
             const row = document.createElement("div");
-            row.className = "summary-line";
+            row.className = "cart-item-row";
 
-            
-const itemDetails = item.selectedSize
-    ? `${ygEscape(item.name)}<br><small class="cart-item-size">Size: ${ygEscape(item.selectedSize)}</small>`
-    : ygEscape(item.name);
+            const itemDetails = item.selectedSize
+                ? `${ygEscape(item.name)}<br><small class="cart-item-size">Size: ${ygEscape(item.selectedSize)}</small>`
+                : ygEscape(item.name);
 
-row.innerHTML = `
-    <span>${itemDetails}</span>
-    <span>₱${Number(item.price).toLocaleString("en-PH", { minimumFractionDigits: 2 })}</span>
-`;
+            row.innerHTML = `
+                <div class="cart-item-info">
+                    <span class="cart-item-name">${itemDetails}</span>
+                    <span class="cart-item-price">₱${Number(item.price).toLocaleString("en-PH", { minimumFractionDigits: 2 })}</span>
+                </div>
+                <button type="button" class="cart-remove-btn" onclick="removeFromCart(${index})" title="Remove item">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            `;
 
             container.appendChild(row);
         });
@@ -1004,73 +995,15 @@ row.innerHTML = `
     togglePaymentForm(selected ? selected.value : "card");
 }
 
-(function ygAddCheckoutStyles() {
-    if (document.getElementById("yg-checkout-added-styles")) return;
-
-    const style = document.createElement("style");
-    style.id = "yg-checkout-added-styles";
-    style.textContent = `
-        #yg-customer-step { padding: 20px 0; }
-        #yg-customer-step h3, #yg-saved-customer-details h3 { margin: 22px 0 12px; }
-        .yg-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-        .yg-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-        .yg-full { grid-column: 1 / -1; }
-        .yg-field input { box-sizing: border-box; width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font: inherit; }
-        .yg-checkout-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-        #yg-saved-customer-details { padding: 16px; margin: 16px 0; background: #f5f5f5; border-radius: 8px; overflow-wrap: anywhere; }
-        #yg-saved-customer-details p { margin: 8px 0; }
-
-        /* Toast Notification Styles */
-        .toast-notification {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #fff;
-            color: #111;
-            padding: 16px 20px;
-            border-radius: 8px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            z-index: 99999;
-            transform: translateY(120px);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            border-left: 5px solid #28a745;
-        }
-
-        .toast-notification.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .toast-icon {
-            font-size: 24px;
-            color: #28a745;
-        }
-
-        .toast-message h4 {
-            margin: 0 0 4px 0;
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .toast-message p {
-            margin: 0;
-            font-size: 13px;
-            color: #666;
-        }
-
-        @media (max-width: 600px) {
-            .yg-form-grid { grid-template-columns: 1fr; }
-            .yg-full { grid-column: auto; }
-            .yg-checkout-actions { flex-direction: column; }
-            .yg-checkout-actions button { width: 100%; }
-        }
-    `;
-    document.head.appendChild(style);
-})();
+function removeFromCart(index) {
+    const removedItem = cart.splice(index, 1)[0];
+    saveCart();
+    ygRenderExistingCart();
+    
+    if (removedItem) {
+        showToast("Item Removed", `${removedItem.name} has been removed from your cart.`);
+    }
+}
 
 const storePolicies = {
     terms: `
@@ -1102,7 +1035,10 @@ const storePolicies = {
     `
 };
 
-function openPolicyModal(policyType) {
+function openPolicyModal(policyType, event) {
+    if (event) event.preventDefault(); // Prevents page from jumping to top
+    closeModal("quick-view-modal"); // Closes quick view modal so they don't overlap
+
     const modalBody = document.getElementById("policy-modal-body");
     if (modalBody && storePolicies[policyType]) {
         modalBody.innerHTML = storePolicies[policyType];
