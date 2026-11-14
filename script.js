@@ -317,7 +317,9 @@ const products = [
 ];
 
 let cart = JSON.parse(localStorage.getItem("yama_cart")) || [];
-let ygCustomerDetails = {};
+let currentCheckoutStep = 'cart'; // 'cart' or 'checkout'
+let selectedPaymentMethod = 'paypal';
+let billingAddressMode = 'same';
 
 // Initialize Page
 document.addEventListener("DOMContentLoaded", () => {
@@ -345,7 +347,7 @@ function saveCart() {
 function updateCartBadge() {
     const badge = document.getElementById("cart-count");
     if (badge) {
-        badge.innerText = cart.length;
+        badge.innerText = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
     }
 }
 
@@ -471,11 +473,7 @@ let selectedQvSize = "";
 
 function selectApparelSize(button, size) {
     selectedQvSize = size;
-
-    document.querySelectorAll(".size-pill").forEach(pill => {
-        pill.classList.remove("selected");
-    });
-
+    document.querySelectorAll(".size-pill").forEach(pill => pill.classList.remove("selected"));
     button.classList.add("selected");
 }
 
@@ -509,24 +507,21 @@ function addQvToCart(productId) {
         return;
     }
 
-    for (let i = 0; i < quantity; i++) {
+    const existingIndex = cart.findIndex(item => item.id === productId && item.selectedSize === (selectedQvSize || null));
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + quantity;
+    } else {
         cart.push({
             ...product,
+            quantity: quantity,
             selectedSize: selectedQvSize || null
         });
     }
 
     saveCart();
 
-    const sizeMessage = selectedQvSize
-        ? ` (Size: ${selectedQvSize})`
-        : "";
-
-    showToast(
-        "Added to Cart",
-        `${quantity} x ${product.name}${sizeMessage} added to your order.`
-    );
-
+    const sizeMessage = selectedQvSize ? ` (Size: ${selectedQvSize})` : "";
+    showToast("Added to Cart", `${quantity} x ${product.name}${sizeMessage} added to your order.`);
     closeModal("quick-view-modal");
 }
 
@@ -575,7 +570,6 @@ function processTracking() {
     if (!trackInput || !resultBox) return;
 
     const val = trackInput.value.trim();
-
     if (val === "") {
         alert("Please enter a valid Order Reference ID.");
         return;
@@ -608,75 +602,361 @@ function addToCart(id) {
         return;
     }
 
-    cart.push({
-        ...item,
-        selectedSize: null
-    });
+    const existingIndex = cart.findIndex(p => p.id === id && !p.selectedSize);
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+    } else {
+        cart.push({
+            ...item,
+            quantity: 1,
+            selectedSize: null
+        });
+    }
 
     saveCart();
     showToast("Added to Cart", `${item.name} added to your order.`);
 }
 
-// Open Cart & Two-Step Checkout Function
+// Open Shopify Cart Modal
 function openCart() {
-    ygAddCheckoutForm();
-
-    const modal = document.getElementById("cart-modal");
-    const customerStep = document.getElementById("yg-customer-step");
-    const cartLayout = modal?.querySelector(".cart-layout");
-    const detailsBox = document.getElementById("yg-saved-customer-details");
-    const heading = modal?.querySelector(".modal-content > h2");
-
-    if (cart.length === 0) {
-        ygRenderExistingCart();
-        openModal("cart-modal");
-        return;
-    }
-
-    if (heading) heading.textContent = "Customer Information";
-
+    currentCheckoutStep = 'cart';
+    renderCartModalContent();
     openModal("cart-modal");
-
-    if (customerStep) customerStep.style.display = "block";
-    if (cartLayout) cartLayout.style.display = "none";
-    if (detailsBox) detailsBox.style.display = "none";
 }
 
-// Handles switching between Card, GCash, Maya, and Store Pickup forms
-function togglePaymentForm(method) {
-    const forms = document.querySelectorAll('.payment-form-section');
-    forms.forEach(form => form.style.display = 'none');
-
-    const targetForm = document.getElementById(`${method}-form`);
-    if (targetForm) {
-        targetForm.style.display = 'block';
+function renderCartModalContent() {
+    const modal = document.getElementById("cart-modal");
+    if (!modal) return;
+    
+    // Ensure modal content wrapper exists
+    let wrapper = modal.querySelector(".modal-content");
+    if (!wrapper) {
+        wrapper = document.createElement("div");
+        wrapper.className = "modal-content";
+        modal.appendChild(wrapper);
     }
 
-    calculateCartTotals(method === 'store');
-}
-
-// Calculates cart subtotal, shipping fee, and grand total
-function calculateCartTotals(isStorePickup = false) {
     let subtotal = 0;
-    cart.forEach(item => subtotal += item.price);
+    cart.forEach(item => subtotal += (item.price * (item.quantity || 1)));
 
-    const shippingFee = (cart.length > 0 && !isStorePickup) ? 250 : 0;
-    const total = subtotal + shippingFee;
+    if (currentCheckoutStep === 'cart') {
+        if (cart.length === 0) {
+            wrapper.innerHTML = `
+                <span class="close-btn" onclick="closeModal('cart-modal')">&times;</span>
+                <div class="cart-header-row">
+                    <h2>Your cart</h2>
+                    <span class="continue-shopping-link" onclick="closeModal('cart-modal')">Continue shopping</span>
+                </div>
+                <div style="text-align: center; padding: 40px 0;">
+                    <p style="color: #666; font-size: 15px; margin-bottom: 20px;">Your cart is currently empty.</p>
+                    <button class="shopify-btn-black" onclick="closeModal('cart-modal')">Start Shopping</button>
+                </div>
+            `;
+            return;
+        }
 
-    const shippingEl = document.getElementById("cart-shipping");
-    if (shippingEl) {
-        shippingEl.innerText = `₱${shippingFee.toLocaleString('en-PH', {minimumFractionDigits: 2})}`;
+        let tableRows = '';
+        cart.forEach((item, index) => {
+            const itemQty = item.quantity || 1;
+            const itemTotal = item.price * itemQty;
+            const sizeText = item.selectedSize ? `<br><small>Size: ${ygEscape(item.selectedSize)}</small>` : '';
+
+            tableRows += `
+                <tr>
+                    <td>
+                        <div class="cart-product-cell">
+                            <img src="${item.image}" class="cart-product-thumb" alt="${item.name}">
+                            <div class="cart-product-info">
+                                <h4>${ygEscape(item.name)}</h4>
+                                <p>₱${Number(item.price).toLocaleString('en-PH', {minimumFractionDigits: 2})}</p>
+                                ${sizeText}
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-qty" style="text-align: right;">
+                        <div class="cart-qty-box">
+                            <button type="button" onclick="updateCartItemQty(${index}, -1)">-</button>
+                            <input type="text" value="${itemQty}" readonly>
+                            <button type="button" onclick="updateCartItemQty(${index}, 1)">+</button>
+                        </div>
+                        <button type="button" class="cart-trash-btn" onclick="removeCartItem(${index})" title="Remove">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                    <td class="col-total cart-item-total">
+                        ₱${Number(itemTotal).toLocaleString('en-PH', {minimumFractionDigits: 2})}
+                    </td>
+                </tr>
+            `;
+        });
+
+        wrapper.innerHTML = `
+            <span class="close-btn" onclick="closeModal('cart-modal')">&times;</span>
+            <div class="cart-header-row">
+                <h2>Your cart</h2>
+                <span class="continue-shopping-link" onclick="closeModal('cart-modal')">Continue shopping</span>
+            </div>
+            <table class="shopify-cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th class="col-qty" style="text-align: right;">Quantity</th>
+                        <th class="col-total" style="text-align: right;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableRows}
+                </tbody>
+            </table>
+            <div class="cart-footer-section">
+                <div class="cart-estimated-total">
+                    Estimated total <span>₱${Number(subtotal).toLocaleString('en-PH', {minimumFractionDigits: 2})} PHP</span>
+                </div>
+                <p class="cart-tax-note">Taxes, discounts and shipping calculated at checkout.</p>
+                <button class="shopify-btn-black" onclick="proceedToCheckout()">Check out</button>
+            </div>
+        `;
+    } else {
+        // Shopify 2-Column Checkout Screen
+        let summaryItemsHTML = '';
+        cart.forEach(item => {
+            const qty = item.quantity || 1;
+            summaryItemsHTML += `
+                <div class="summary-item-row">
+                    <div class="summary-item-left">
+                        <div style="position: relative;">
+                            <img src="${item.image}" class="summary-thumb" alt="${item.name}">
+                            <span class="summary-badge-count">${qty}</span>
+                        </div>
+                        <div>
+                            <strong style="font-size: 13px; display: block; color: #111;">${ygEscape(item.name)}</strong>
+                            <small style="color: #666;">${item.selectedSize ? 'Size: ' + item.selectedSize : ''}</small>
+                        </div>
+                    </div>
+                    <span style="font-size: 13px; font-weight: 600;">₱${Number(item.price * qty).toLocaleString('en-PH', {minimumFractionDigits: 2})}</span>
+                </div>
+            `;
+        });
+
+        const shippingFee = 250;
+        const estimatedTaxes = subtotal * 0.12;
+        const grandTotal = subtotal + shippingFee + estimatedTaxes;
+
+        wrapper.innerHTML = `
+            <span class="close-btn" onclick="closeModal('cart-modal')">&times;</span>
+            <div class="cart-header-row" style="margin-bottom: 15px;">
+                <span class="continue-shopping-link" onclick="currentCheckoutStep='cart'; renderCartModalContent();"><i class="fa-solid fa-arrow-left"></i> Return to cart</span>
+                <h2 style="font-size: 20px;">Secure Checkout</h2>
+            </div>
+
+            <div class="shopify-checkout-container">
+                <!-- Left Column: Forms -->
+                <div>
+                    <form id="shopify-checkout-form" onsubmit="completeShopifyOrder(event)">
+                        <!-- Contact Section -->
+                        <div class="checkout-section-title">Contact</div>
+                        <div class="shopify-form-group">
+                            <input type="email" class="shopify-input" id="chk-email" placeholder="Email" required>
+                        </div>
+                        <div style="margin-bottom: 20px; font-size: 12px; display: flex; align-items: center; gap: 6px;">
+                            <input type="checkbox" id="chk-news" checked>
+                            <label for="chk-news">Email me with news and offers</label>
+                        </div>
+
+                        <!-- Delivery Section -->
+                        <div class="checkout-section-title">Delivery</div>
+                        <div class="shopify-form-group">
+                            <select class="shopify-select">
+                                <option value="Philippines">Philippines</option>
+                                <option value="Japan">Japan</option>
+                            </select>
+                        </div>
+                        <div class="shopify-form-row shopify-form-group">
+                            <input type="text" class="shopify-input" id="chk-fname" placeholder="First name" required>
+                            <input type="text" class="shopify-input" id="chk-lname" placeholder="Last name" required>
+                        </div>
+                        <div class="shopify-form-group">
+                            <input type="text" class="shopify-input" id="chk-address" placeholder="Address" required>
+                        </div>
+                        <div class="shopify-form-row shopify-form-group">
+                            <input type="text" class="shopify-input" placeholder="Apartment, suite, etc. (optional)">
+                            <input type="text" class="shopify-input" placeholder="Barangay">
+                        </div>
+                        <div class="shopify-form-row shopify-form-group">
+                            <input type="text" class="shopify-input" id="chk-postal" placeholder="Postal code" required>
+                            <input type="text" class="shopify-input" id="chk-city" placeholder="City" required>
+                        </div>
+                        <div class="shopify-form-group">
+                            <select class="shopify-select" id="chk-region">
+                                <option value="Cebu">Cebu</option>
+                                <option value="Metro Manila">Metro Manila</option>
+                                <option value="Davao">Davao</option>
+                                <option value="Other">Other Region</option>
+                            </select>
+                        </div>
+                        <div class="shopify-form-group" style="margin-bottom: 25px;">
+                            <input type="tel" class="shopify-input" id="chk-phone" placeholder="Phone" required>
+                        </div>
+
+                        <!-- Payment Section -->
+                        <div class="checkout-section-title">Payment</div>
+                        <p style="font-size: 12px; color: #666; margin-bottom: 10px;">All transactions are secure and encrypted.</p>
+                        
+                        <div class="shopify-payment-box">
+                            <!-- Option 1: PayPal -->
+                            <div class="shopify-payment-option ${selectedPaymentMethod === 'paypal' ? 'active-payment' : ''}" onclick="selectPayment('paypal')">
+                                <div class="shopify-payment-header">
+                                    <label><input type="radio" name="pay" ${selectedPaymentMethod === 'paypal' ? 'checked' : ''}> PayPal</label>
+                                    <i class="fa-brands fa-paypal" style="color: #003087; font-size: 18px;"></i>
+                                </div>
+                                <div class="payment-subpanel">
+                                    <p>You'll be redirected to PayPal to complete your purchase.</p>
+                                </div>
+                            </div>
+
+                            <!-- Option 2: PayMongo -->
+                            <div class="shopify-payment-option ${selectedPaymentMethod === 'paymongo' ? 'active-payment' : ''}" onclick="selectPayment('paymongo')">
+                                <div class="shopify-payment-header">
+                                    <label><input type="radio" name="pay" ${selectedPaymentMethod === 'paymongo' ? 'checked' : ''}> Secure Payments via PayMongo</label>
+                                    <div style="display: flex; gap: 4px; font-size: 11px; font-weight: bold;">
+                                        <span style="background: #eb001b; color:white; padding:2px 6px; border-radius:3px;">MC</span>
+                                        <span style="background: #1a1f71; color:white; padding:2px 6px; border-radius:3px;">VISA</span>
+                                        <span style="background: #0056b3; color:white; padding:2px 6px; border-radius:3px;">GCash</span>
+                                    </div>
+                                </div>
+                                <div class="payment-subpanel">
+                                    <p>Pay securely using credit card, debit card, or e-wallets through PayMongo gateway.</p>
+                                </div>
+                            </div>
+
+                            <!-- Option 3: COD -->
+                            <div class="shopify-payment-option ${selectedPaymentMethod === 'cod' ? 'active-payment' : ''}" onclick="selectPayment('cod')">
+                                <div class="shopify-payment-header">
+                                    <label><input type="radio" name="pay" ${selectedPaymentMethod === 'cod' ? 'checked' : ''}> Cash on Delivery (COD)</label>
+                                </div>
+                                <div class="payment-subpanel">
+                                    <p>Great news! Yama Gears offers Cash on Delivery. Pay in cash when your order arrives at your doorstep.</p>
+                                </div>
+                            </div>
+
+                            <!-- Option 4: Bank Deposit -->
+                            <div class="shopify-payment-option ${selectedPaymentMethod === 'bank' ? 'active-payment' : ''}" onclick="selectPayment('bank')">
+                                <div class="shopify-payment-header">
+                                    <label><input type="radio" name="pay" ${selectedPaymentMethod === 'bank' ? 'checked' : ''}> Bank Deposit</label>
+                                </div>
+                                <div class="payment-subpanel">
+                                    <p>Transfer funds directly to our BPI or BDO official corporate accounts.</p>
+                                </div>
+                            </div>
+
+                            <!-- Option 5: Cash Payment at Store -->
+                            <div class="shopify-payment-option ${selectedPaymentMethod === 'store' ? 'active-payment' : ''}" onclick="selectPayment('store')">
+                                <div class="shopify-payment-header">
+                                    <label><input type="radio" name="pay" ${selectedPaymentMethod === 'store' ? 'checked' : ''}> Cash Payment at Store</label>
+                                </div>
+                                <div class="payment-subpanel">
+                                    <p>Pay cash upon pickup at our official Yama Gears location.</p>
+                                </div>
+                            </div>
+
+                            <!-- Option 6: GCash -->
+                            <div class="shopify-payment-option ${selectedPaymentMethod === 'gcash' ? 'active-payment' : ''}" onclick="selectPayment('gcash')">
+                                <div class="shopify-payment-header">
+                                    <label><input type="radio" name="pay" ${selectedPaymentMethod === 'gcash' ? 'checked' : ''}> GCash</label>
+                                </div>
+                                <div class="payment-subpanel">
+                                    <p>Send direct payment to <strong>09XX-XXX-XXXX (Yama Gears)</strong> and upload reference.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Billing Address Section -->
+                        <div class="checkout-section-title" style="margin-top: 25px;">Billing address</div>
+                        <div class="shopify-payment-box">
+                            <div class="shopify-payment-option ${billingAddressMode === 'same' ? 'active-payment' : ''}" onclick="selectBilling('same')">
+                                <div class="shopify-payment-header">
+                                    <label><input type="radio" name="bill" ${billingAddressMode === 'same' ? 'checked' : ''}> Same as shipping address</label>
+                                </div>
+                            </div>
+                            <div class="shopify-payment-option ${billingAddressMode === 'diff' ? 'active-payment' : ''}" onclick="selectBilling('diff')">
+                                <div class="shopify-payment-header">
+                                    <label><input type="radio" name="bill" ${billingAddressMode === 'diff' ? 'checked' : ''}> Use a different billing address</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="shopify-blue-btn">Pay now</button>
+                    </form>
+                </div>
+
+                <!-- Right Column: Order Summary Sidebar -->
+                <div class="checkout-summary-sidebar">
+                    <div style="max-height: 250px; overflow-y: auto; margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                        ${summaryItemsHTML}
+                    </div>
+                    <div class="summary-item-row">
+                        <span style="color: #555;">Subtotal</span>
+                        <strong>₱${Number(subtotal).toLocaleString('en-PH', {minimumFractionDigits: 2})}</strong>
+                    </div>
+                    <div class="summary-item-row">
+                        <span style="color: #555;">Shipping</span>
+                        <span>₱${Number(shippingFee).toLocaleString('en-PH', {minimumFractionDigits: 2})}</span>
+                    </div>
+                    <div class="summary-item-row">
+                        <span style="color: #555;">Estimated taxes</span>
+                        <span>₱${Number(estimatedTaxes).toLocaleString('en-PH', {minimumFractionDigits: 2})}</span>
+                    </div>
+                    <hr style="border: none; border-top: 1px solid #ddd; margin: 15px 0;">
+                    <div class="summary-item-row" style="font-size: 16px; font-weight: bold;">
+                        <span>Total</span>
+                        <span>PHP ₱${Number(grandTotal).toLocaleString('en-PH', {minimumFractionDigits: 2})}</span>
+                    </div>
+                </div>
+            </div>
+        `;
     }
+}
 
-    const subtotalEl = document.getElementById("cart-subtotal");
-    if (subtotalEl) {
-        subtotalEl.innerText = `₱${subtotal.toLocaleString('en-PH', {minimumFractionDigits: 2})}`;
-    }
+function proceedToCheckout() {
+    if (cart.length === 0) return;
+    currentCheckoutStep = 'checkout';
+    renderCartModalContent();
+}
 
-    const totalEl = document.getElementById("cart-total");
-    if (totalEl) {
-        totalEl.innerText = `₱${total.toLocaleString('en-PH', {minimumFractionDigits: 2})}`;
+function selectPayment(method) {
+    selectedPaymentMethod = method;
+    renderCartModalContent();
+}
+
+function selectBilling(mode) {
+    billingAddressMode = mode;
+    renderCartModalContent();
+}
+
+function updateCartItemQty(index, change) {
+    if (!cart[index].quantity) cart[index].quantity = 1;
+    cart[index].quantity += change;
+    if (cart[index].quantity < 1) cart[index].quantity = 1;
+    saveCart();
+    renderCartModalContent();
+}
+
+function removeCartItem(index) {
+    const removed = cart.splice(index, 1)[0];
+    saveCart();
+    renderCartModalContent();
+    if (removed) {
+        showToast("Item Removed", `${removed.name} removed from cart.`);
     }
+}
+
+function completeShopifyOrder(e) {
+    e.preventDefault();
+    const trackingId = "YG-" + Math.floor(1000 + Math.random() * 9000);
+    showToast("Order Placed Successfully!", `Tracking ID: ${trackingId} via ${selectedPaymentMethod.toUpperCase()}`);
+    cart = [];
+    saveCart();
+    closeModal('cart-modal');
 }
 
 // Custom Toast Notification Helper Function
@@ -706,64 +986,39 @@ function showToast(title, message) {
     }, 4000);
 }
 
-// Process Checkout with Custom Toast Notification & Policy Agreement Check
-function processCheckout() {
-    if (cart.length === 0) {
-        showToast("Cart Empty", "Your shopping cart is currently empty.");
-        return;
-    }
-
-    if (!ygCustomerDetails.email || !ygCustomerDetails.address) {
-        showToast("Missing Information", "Please complete your contact and delivery information first.");
-        const customerStep = document.getElementById("yg-customer-step");
-        const cartLayout = document.querySelector("#cart-modal .cart-layout");
-
-        if (customerStep) customerStep.style.display = "block";
-        if (cartLayout) cartLayout.style.display = "none";
-        return;
-    }
-
-    const termsCheck = document.getElementById("terms-check");
-    if (termsCheck && !termsCheck.checked) {
-        showToast("Agreement Required", "Please agree to the Terms & Conditions, Warranty, and Cancellation Policy before placing your order.");
-        return;
-    }
-
-    const method = document.querySelector('input[name="paymethod"]:checked')?.value || "card";
-
-    const methodNames = {
-        card: "Credit/Debit Card",
-        gcash: "GCash",
-        maya: "Maya",
-        store: "Store Pickup / Cash"
-    };
-
-    const trackingId = "YG-" + Math.floor(1000 + Math.random() * 9000);
-
-    showToast("Order Placed Successfully!", `Processed via ${methodNames[method]}. Tracking ID: ${trackingId}`);
-
-    cart = [];
-    saveCart();
-    ygCustomerDetails = {};
-
-    closeModal("cart-modal");
-
-    const customerStep = document.getElementById("yg-customer-step");
-    const cartLayout = document.querySelector("#cart-modal .cart-layout");
-    const detailsBox = document.getElementById("yg-saved-customer-details");
-    const form = document.getElementById("yg-customer-form");
-
-    if (customerStep) customerStep.style.display = "block";
-    if (cartLayout) cartLayout.style.display = "grid";
-    if (detailsBox) detailsBox.style.display = "none";
-    if (form) form.reset();
-
-    if (termsCheck) termsCheck.checked = false;
-}
-
+// Updated Inquiry Submission saving to localStorage for Admin Inquiries panel
 function submitInquiry(e) {
     e.preventDefault();
-    showToast("Inquiry Sent", "Your inquiry has been submitted to Yama Gears staff.");
+    
+    const nameInput = document.getElementById("inquiry-name");
+    const emailInput = document.getElementById("inquiry-email");
+    const messageInput = document.getElementById("inquiry-message");
+
+    const name = nameInput ? nameInput.value.trim() : "Valued Customer";
+    const email = emailInput ? emailInput.value.trim() : "";
+    const message = messageInput ? messageInput.value.trim() : "";
+
+    if (!email || !message) {
+        showToast("Missing Information", "Please provide your email and message before sending.");
+        return;
+    }
+
+    let inquiries = JSON.parse(localStorage.getItem("yama_inquiries_db")) || [];
+    
+    const newInquiry = {
+        id: Date.now(),
+        name: name,
+        email: email,
+        message: message,
+        date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+        status: "Pending",
+        adminReply: ""
+    };
+
+    inquiries.push(newInquiry);
+    localStorage.setItem("yama_inquiries_db", JSON.stringify(inquiries));
+
+    showToast("Inquiry Sent!", "Your message has been sent to Yama Gears staff. We will reply via email shortly.");
     e.target.reset();
 }
 
@@ -805,151 +1060,6 @@ document.addEventListener('click', function(e) {
     }
 });
 
-/* ==========================================
-   YAMA GEARS - ADD-ON TWO-STEP CHECKOUT
-   ========================================== */
-
-function ygAddCheckoutForm() {
-    const modal = document.getElementById("cart-modal");
-    if (!modal || document.getElementById("yg-customer-step")) return;
-
-    const modalContent = modal.querySelector(".modal-content");
-    const cartLayout = modal.querySelector(".cart-layout");
-
-    if (!modalContent || !cartLayout) return;
-
-    const customerStep = document.createElement("section");
-    customerStep.id = "yg-customer-step";
-    customerStep.innerHTML = `
-        <div class="yg-checkout-header">
-            <p>Enter your contact and delivery details to continue.</p>
-        </div>
-
-        <form id="yg-customer-form">
-            <h3>Contact Information</h3>
-
-            <div class="yg-form-grid">
-                <div class="yg-field yg-full">
-                    <label for="yg-email">Email Address *</label>
-                    <input id="yg-email" name="email" type="email" autocomplete="email" required>
-                </div>
-
-                <div class="yg-field">
-                    <label for="yg-first-name">First Name *</label>
-                    <input id="yg-first-name" name="firstName" autocomplete="given-name" required>
-                </div>
-
-                <div class="yg-field">
-                    <label for="yg-last-name">Last Name *</label>
-                    <input id="yg-last-name" name="lastName" autocomplete="family-name" required>
-                </div>
-
-                <div class="yg-field yg-full">
-                    <label for="yg-phone">Phone Number *</label>
-                    <input id="yg-phone" name="phone" type="tel" autocomplete="tel" required>
-                </div>
-            </div>
-
-            <h3>Delivery Address</h3>
-
-            <div class="yg-form-grid">
-                <div class="yg-field yg-full">
-                    <label for="yg-address">Street Address *</label>
-                    <input id="yg-address" name="address" autocomplete="street-address" required>
-                </div>
-
-                <div class="yg-field">
-                    <label for="yg-city">City / Municipality *</label>
-                    <input id="yg-city" name="city" autocomplete="address-level2" required>
-                </div>
-
-                <div class="yg-field">
-                    <label for="yg-region">Province / Region *</label>
-                    <input id="yg-region" name="region" autocomplete="address-level1" required>
-                </div>
-
-                <div class="yg-field yg-full">
-                    <label for="yg-postal">Postal Code *</label>
-                    <input id="yg-postal" name="postal" autocomplete="postal-code" required>
-                </div>
-            </div>
-
-            <div class="yg-checkout-actions">
-                <button type="button" class="btn btn-secondary" id="yg-back-to-cart">
-                    Back to Cart
-                </button>
-                <button type="submit" class="btn btn-primary">
-                    Continue to Order Summary
-                </button>
-            </div>
-        </form>
-    `;
-
-    modalContent.insertBefore(customerStep, cartLayout);
-
-    document.getElementById("yg-customer-form").addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        if (cart.length === 0) {
-            alert("Your cart is empty. Please add a product first.");
-            return;
-        }
-
-        const formData = new FormData(this);
-        ygCustomerDetails = Object.fromEntries(formData.entries());
-
-        customerStep.style.display = "none";
-        cartLayout.style.display = "grid";
-
-        const summaryHeading = modalContent.querySelector(":scope > h2");
-        if (summaryHeading) {
-            summaryHeading.textContent = "Review Your Order";
-        }
-
-        let detailsBox = document.getElementById("yg-saved-customer-details");
-
-        if (!detailsBox) {
-            detailsBox = document.createElement("div");
-            detailsBox.id = "yg-saved-customer-details";
-            cartLayout.parentNode.insertBefore(detailsBox, cartLayout);
-        }
-
-        detailsBox.innerHTML = `
-            <h3>Delivery Details</h3>
-            <p><strong>Name:</strong> ${ygEscape(ygCustomerDetails.firstName + " " + ygCustomerDetails.lastName)}</p>
-            <p><strong>Email:</strong> ${ygEscape(ygCustomerDetails.email)}</p>
-            <p><strong>Phone:</strong> ${ygEscape(ygCustomerDetails.phone)}</p>
-            <p><strong>Address:</strong> ${ygEscape(ygCustomerDetails.address + ", " + ygCustomerDetails.city + ", " + ygCustomerDetails.region + " " + ygCustomerDetails.postal)}</p>
-
-            <button type="button" class="btn btn-secondary" id="yg-edit-customer">
-                Edit Details
-            </button>
-        `;
-
-        document.getElementById("yg-edit-customer").onclick = function() {
-            customerStep.style.display = "block";
-            cartLayout.style.display = "none";
-            detailsBox.style.display = "none";
-
-            if (summaryHeading) {
-                summaryHeading.textContent = "Customer Information";
-            }
-        };
-
-        ygRenderExistingCart();
-    });
-
-    document.getElementById("yg-back-to-cart").addEventListener("click", () => {
-        customerStep.style.display = "none";
-        cartLayout.style.display = "grid";
-
-        const summaryHeading = modalContent.querySelector(":scope > h2");
-        if (summaryHeading) {
-            summaryHeading.textContent = "Your Shopping Cart & Order Checkout";
-        }
-    });
-}
-
 function ygEscape(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
@@ -958,51 +1068,6 @@ function ygEscape(value) {
         '"': "&quot;",
         "'": "&#39;"
     })[character]);
-}
-
-function ygRenderExistingCart() {
-    const container = document.getElementById("cart-items-container");
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    if (cart.length === 0) {
-        container.innerHTML = "<p>Your cart is empty.</p>";
-    } else {
-        cart.forEach((item, index) => {
-            const row = document.createElement("div");
-            row.className = "cart-item-row";
-
-            const itemDetails = item.selectedSize
-                ? `${ygEscape(item.name)}<br><small class="cart-item-size">Size: ${ygEscape(item.selectedSize)}</small>`
-                : ygEscape(item.name);
-
-            row.innerHTML = `
-                <div class="cart-item-info">
-                    <span class="cart-item-name">${itemDetails}</span>
-                    <span class="cart-item-price">₱${Number(item.price).toLocaleString("en-PH", { minimumFractionDigits: 2 })}</span>
-                </div>
-                <button type="button" class="cart-remove-btn" onclick="removeFromCart(${index})" title="Remove item">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            `;
-
-            container.appendChild(row);
-        });
-    }
-
-    const selected = document.querySelector('input[name="paymethod"]:checked');
-    togglePaymentForm(selected ? selected.value : "card");
-}
-
-function removeFromCart(index) {
-    const removedItem = cart.splice(index, 1)[0];
-    saveCart();
-    ygRenderExistingCart();
-    
-    if (removedItem) {
-        showToast("Item Removed", `${removedItem.name} has been removed from your cart.`);
-    }
 }
 
 const storePolicies = {
@@ -1036,8 +1101,8 @@ const storePolicies = {
 };
 
 function openPolicyModal(policyType, event) {
-    if (event) event.preventDefault(); // Prevents page from jumping to top
-    closeModal("quick-view-modal"); // Closes quick view modal so they don't overlap
+    if (event) event.preventDefault();
+    closeModal("quick-view-modal");
 
     const modalBody = document.getElementById("policy-modal-body");
     if (modalBody && storePolicies[policyType]) {

@@ -579,50 +579,377 @@ body {
     border: 1px solid var(--border-color);
 }
 
-/* Cart & Checkout Layout */
-.cart-layout {
+/* ==========================================
+   SHOPIFY-STYLE CART & CHECKOUT STYLES
+   ========================================== */
+
+/* Fullscreen Cart & Checkout Modal Override */
+#cart-modal .modal-content {
+    max-width: 950px;
+    width: 95%;
+    padding: 30px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.cart-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 15px;
+}
+
+.cart-header-row h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+}
+
+.continue-shopping-link {
+    font-size: 14px;
+    color: #111;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Cart Table Layout */
+.shopify-cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+.shopify-cart-table th {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #666;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e1e1e1;
+    text-align: left;
+}
+
+.shopify-cart-table th.col-qty,
+.shopify-cart-table th.col-total {
+    text-align: right;
+}
+
+.shopify-cart-table td {
+    padding: 15px 0;
+    border-bottom: 1px solid #f1f1f1;
+    vertical-align: middle;
+}
+
+.cart-product-cell {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-product-thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #e1e1e1;
+}
+
+.cart-product-info h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 3px 0;
+}
+
+.cart-product-info p {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+.cart-product-info small {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Quantity Control Box */
+.cart-qty-box {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.cart-qty-box button {
+    background: transparent;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.cart-qty-box input {
+    width: 35px;
+    text-align: center;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    background: transparent;
+}
+
+.cart-item-total {
+    font-weight: 700;
+    color: #111;
+    text-align: right;
+    font-size: 15px;
+}
+
+.cart-trash-btn {
+    background: transparent;
+    border: none;
+    color: #777;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 5px;
+    transition: color 0.2s;
+    margin-left: 10px;
+}
+
+.cart-trash-btn:hover {
+    color: #dc3545;
+}
+
+/* Cart Footer Summary */
+.cart-footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cart-estimated-total {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111;
+}
+
+.cart-estimated-total span {
+    font-size: 20px;
+    font-weight: 800;
+    margin-left: 10px;
+}
+
+.cart-tax-note {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+}
+
+.shopify-btn-black {
+    background: #0d0d0d;
+    color: #fff;
+    padding: 14px 40px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 300px;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.shopify-btn-black:hover {
+    background: #333;
+}
+
+/* Shopify Checkout Two-Column Layout */
+.shopify-checkout-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
 }
 
 @media(max-width: 768px) {
-    .cart-layout { grid-template-columns: 1fr; }
+    .shopify-checkout-container {
+        grid-template-columns: 1fr;
+    }
 }
 
-.summary-line {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 14px;
+.checkout-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 12px;
 }
 
-.total-line {
-    font-weight: bold;
-    font-size: 18px;
-    margin-top: 10px;
+.shopify-form-group {
+    margin-bottom: 12px;
 }
 
-.payment-methods {
-    display: flex;
-    gap: 15px;
-    margin: 15px 0;
+.shopify-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
 }
 
-.pay-option {
+.shopify-input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
     font-size: 13px;
+    outline: none;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.shopify-input:focus {
+    border-color: #111;
+    box-shadow: 0 0 0 1px #111;
+}
+
+.shopify-select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    font-size: 13px;
+    background: #fff;
+    outline: none;
+}
+
+/* Shopify Payment Radio Group Accordion Styling */
+.shopify-payment-box {
+    border: 1px solid #c9c9c9;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.shopify-payment-option {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #e1e1e1;
+    background: #fff;
     cursor: pointer;
 }
 
-.card-form-box {
-    background-color: var(--accent-gray);
-    padding: 15px;
-    margin-bottom: 15px;
+.shopify-payment-option:last-child {
+    border-bottom: none;
 }
 
-.form-row {
+.shopify-payment-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+}
+
+.shopify-payment-header label {
+    display: flex;
+    align-items: center;
     gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    cursor: pointer;
+    width: 100%;
+}
+
+.payment-subpanel {
+    background: #f7f7f7;
+    padding: 15px;
+    border-top: 1px solid #e1e1e1;
+    font-size: 13px;
+    color: #333;
+    display: none;
+}
+
+.shopify-payment-option.active-payment {
+    background: #f4f8fb;
+    border-color: #005bd3;
+}
+
+.shopify-payment-option.active-payment .payment-subpanel {
+    display: block;
+}
+
+/* Checkout Summary Sidebar */
+.checkout-summary-sidebar {
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #e1e1e1;
+    height: fit-content;
+}
+
+.summary-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+
+.summary-item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.summary-thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    position: relative;
+}
+
+.summary-badge-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #555;
+    color: white;
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shopify-blue-btn {
+    background: #005bd3;
+    color: white;
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.shopify-blue-btn:hover {
+    background: #00409e;
 }
 
 .tracking-result-box {
@@ -631,125 +958,6 @@ body {
     margin-top: 15px;
     border-left: 4px solid var(--secondary-black);
     font-size: 13px;
-}
-
-/* Two-Step Checkout Form Grid Layout */
-#yg-customer-step {
-    padding: 20px 0;
-}
-
-#yg-customer-step h3, 
-#yg-saved-customer-details h3 {
-    margin: 22px 0 12px 0;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.yg-form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-}
-
-.yg-field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-width: 0;
-}
-
-.yg-full {
-    grid-column: 1 / -1;
-}
-
-.yg-field input {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font: inherit;
-    background: #fff;
-}
-
-.yg-checkout-actions {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 24px;
-}
-
-#yg-saved-customer-details {
-    padding: 16px;
-    margin: 16px 0;
-    background: var(--accent-gray);
-    border-radius: 8px;
-    overflow-wrap: anywhere;
-}
-
-#yg-saved-customer-details p {
-    margin: 8px 0;
-}
-
-@media (max-width: 600px) {
-    .yg-form-grid {
-        grid-template-columns: 1fr;
-    }
-    .yg-full {
-        grid-column: auto;
-    }
-    .yg-checkout-actions {
-        flex-direction: column;
-    }
-    .yg-checkout-actions button {
-        width: 100%;
-    }
-}
-
-/* Clean Cart Row & Delete Icon Styles */
-.cart-item-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.cart-item-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding-right: 12px;
-}
-
-.cart-item-name {
-    font-weight: 500;
-    color: #222;
-}
-
-.cart-item-price {
-    font-weight: 600;
-    color: #111;
-}
-
-.cart-remove-btn {
-    background: transparent;
-    border: none;
-    color: #999;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cart-remove-btn:hover {
-    color: #dc3545;
-    background: rgba(220, 53, 69, 0.1);
 }
 
 /* Footer */

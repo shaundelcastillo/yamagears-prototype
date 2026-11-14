@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yama Gears - Customer Inquiries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin-product.css">
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">
+            <h2>YAMA <span>GEARS</span></h2>
+            <small>Admin Panel</small>
+        </div>
+        <nav class="nav-menu">
+            <a href="admin.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+            <a href="adminproduct.html" class="nav-item"><i class="fa-solid fa-box"></i> Products</a>
+            <a href="adminorder.html" class="nav-item"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+            <a href="admininventory.html" class="nav-item"><i class="fa-solid fa-warehouse"></i> Inventory Report</a>
+            <a href="admininquiries.html" class="nav-item active"><i class="fa-solid fa-comments"></i> Inquiries</a>
+            <a href="adminsettings.html" class="nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Back to Store</a>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <header class="topbar">
+            <h1>Customer Inquiries & Messages</h1>
+        </header>
+
+        <div class="content-body">
+            <div class="data-card">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inquiries-table-body">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Reply Modal -->
+    <div id="reply-modal" class="modal" style="display:none;">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>Reply to Customer</h3>
+                <span class="close-btn" onclick="closeReplyModal()">&times;</span>
+            </div>
+            <form id="reply-form" onsubmit="sendAdminReply(event)">
+                <input type="hidden" id="reply-inquiry-id">
+                <div class="form-group">
+                    <label>Customer Email</label>
+                    <input type="text" id="reply-to-email" class="form-control" readonly style="background:#eee;">
+                </div>
+                <div class="form-group">
+                    <label>Original Message</label>
+                    <p id="reply-original-msg" style="font-size: 13px; color: #555; background: #f9f9f9; padding: 10px; border-radius: 4px;"></p>
+                </div>
+                <div class="form-group">
+                    <label>Admin Response / Reply</label>
+                    <textarea id="admin-response-text" class="form-control" rows="4" required placeholder="Type your reply here..."></textarea>
+                </div>
+                <div class="modal-footer" style="display:flex; justify-content:flex-end; gap:10px; margin-top:15px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeReplyModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Send Email Reply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admininquiries.js"></script>
+</body>
+</html>
